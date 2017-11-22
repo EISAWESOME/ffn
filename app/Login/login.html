@@ -1,0 +1,19 @@
+<section>
+  <p>Page de login</p>
+
+
+  <label for="ndc"> Ndc :</label>
+  <input id="ndc">
+  <label for="mdp"> Mdp :</label>
+  <input id="mdp">
+
+  <button> Go!</button>
+
+
+  <!--  Envoi les credentials a l'API
+        Si l'API reponds != false, on redirige vers home, sinon on affiche un message d'erreur-->
+  <div class="error" ng-if="loginError">
+    {{loginError}}
+  </div>
+
+</section>

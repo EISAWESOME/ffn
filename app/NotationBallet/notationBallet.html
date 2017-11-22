@@ -1,0 +1,74 @@
+
+<section>
+  <div style="display:block">
+    <p>Page de notation des ballet.</p>
+    <p>Accessible seulement par les juges</p>
+    <p>Les item de notation s'adapte en fonction du role du juge</p>
+  </div>
+
+  <button ng-click="resetEpreuve()" ng-if="selectedEpreuve && !selectedEquipe">Reset Epreuve</button>
+  <button ng-click="resetEpreuve()" ng-if="selectedEpreuve && selectedEquipe">Reset Equipe</button>
+
+  <!-- choix de la competition -->
+  <div ng-repeat="competition in $storage.competitions track by $index">
+    <!-- Affiche chaque competition -->
+    <div class="compet" id="selectionEpreuve" ng-if="!selectedEpreuve">
+      {{competition.date}} : {{competition.ville}}
+
+      <div class="etape">
+        <div ng-repeat="etape in competition.Etapes">
+          {{etape.intitule}}
+
+
+
+          <div class="epreuve">
+
+            <div ng-repeat="epreuve in etape.Epreuves">
+              <!-- Mettre un onclick qui donne accès à la notation de cette epreuve-->
+              <button ng-click="selectEpreuve(epreuve)">{{epreuve.intitule}}</button>
+
+            </div>
+
+          </div>
+
+          <hr/>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div ng-if="selectedEpreuve">
+      Selection de l'équipe à noté
+    </div>
+
+
+
+
+    <div id="notationEpreuve" ng-if="selectedEpreuve && selectedEquipe">
+      Notation :
+      <div>
+        {{selectedEpreuve.id}}
+      </div>
+      <div>
+        {{selectedEpreuve.intitule}}
+      </div>
+      <div>
+        <label>Note : </label>
+        <input>
+        <button>Submit</button>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- Au clic , on affiches les différentes étapes de la competitions -->
+
+
+  </div>
+</section>

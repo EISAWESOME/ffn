@@ -1,0 +1,53 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.error{
+  color : red;
+}
+
+.pageEntry {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin: 3px;
+  padding: 3px;
+  border : solid black 1px;
+}
+
+.pageEntry img{
+
+  position: absolute;
+  left: 29px;
+  bottom: 5px;
+  display: block;
+
+
+}
+
