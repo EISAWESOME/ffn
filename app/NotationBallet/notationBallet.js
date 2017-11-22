@@ -10,8 +10,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
   }])
 
   .controller('notationBalletCtrl',
-    ['$scope', '$localStorage', '$sessionStorage', '$rootScope',
-      function($scope, $localStorage, $sessionStorage, $rootScope) {
+    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q',
+      function($scope, $localStorage, $sessionStorage, $rootScope, $q) {
 
         $scope.$storage = $localStorage;
 
@@ -136,7 +136,11 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           };
 
         $scope.selectedEpreuve = undefined;
+
         $scope.selectedEquipe = undefined;
+        $scope.selectedEquipeNageurs = undefined;
+
+        $scope.allEquipes = undefined;
 
         $scope.resetEpreuve = function(){
 
@@ -153,47 +157,94 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         $scope.selectEpreuve = function(epreuve){
 
           $scope.selectedEpreuve = epreuve;
-          $scope.getEquipes(epreuve.id);
+          $scope.allEquipes = $scope.getEquipes(epreuve.id);
+          console.log($scope.allEquipes);
           // Il faut recuperer les equipes qui participe a cette epreuve, ainsi que le nom de leur club
+
+
+        };
+
+        $scope.selectEquipe = function(idEpreuve, equipe){
+          $scope.getNageursAsync(idEpreuve, equipe.id).then(function(nageurs){
+            $scope.selectedEquipeNageurs = nageurs;
+            $scope.selectedEquipe = equipe;
+            console.log($scope.selectedEquipeNageurs);
+          });
 
 
         };
 
         $scope.getEquipes = function(idEpreuve){
           console.log("On appelle l'API getEquipesByEpreuves! C'est pas en dur du tout");
-          return json = {
-            id : 999,
-            nom_equipe : "69 la trik"
+          console.log(idEpreuve);
+          var equipes = [
+            {id : 999,
+            nom_equipe : "69 la trik"},
 
-          };
+            {id : 888,
+              nom_equipe : "Les filous du poitou"}
+          ];
 
-
-
+          return equipes;
         };
 
-        $scope.getNageurs = function(idEpreuve, idEquipe){
+        $scope.getNageursAsync = function(idEpreuve, idEquipe){
+          var nageurDefer = $q.defer();
           console.log("On appelle l'API getNageursByEquipeEpreuve ! C'est pas en dur du tout");
-          return json = {
-            id_equipe : 999,
-            nom_equipe : "69 la trik",
-            nageurs : {
-              0 : {
-                nom : "Gilot",
-                prenom : "Luc"
-              },
+          console.log(idEpreuve, idEquipe);
 
-              1 : {
-                nom : "Alluin",
-                prenom : "Philippe"
-              },
+          if(idEquipe == 999){
+            var nageurs = [
+              {id_equipe : 999,
+                nom_equipe : "69 la trik",
+                nageurs : {
+                  0 : {
+                    nom : "Gilot",
+                    prenom : "Luc"
+                  },
 
-              2 : {
-                nom : "Malnuit",
-                prenom : "Agnes"
-              }
-            }
+                  1 : {
+                    nom : "Alluin",
+                    prenom : "Philippe"
+                  },
 
-          };
+                  2 : {
+                    nom : "Malnuit",
+                    prenom : "Agnes"
+                  }
+                }}
+            ];
+
+            nageurDefer.resolve(nageurs);
+          }
+
+          if(idEquipe == 888) {
+            var nageurs = [
+              {id_equipe : 888,
+                nom_equipe : "Les filou du poitou",
+                nageurs : {
+                  0 : {
+                    nom : "Doe",
+                    prenom : "John"
+                  },
+
+                  1 : {
+                    nom : "Ragout",
+                    prenom : "Dylan"
+                  },
+
+                  2 : {
+                    nom : "Polnareff",
+                    prenom : "Jean-Pierre"
+                  }
+                }}
+            ];
+
+            nageurDefer.resolve(nageurs);
+          }
+
+          return nageurDefer.promise;
+
         }
 
 

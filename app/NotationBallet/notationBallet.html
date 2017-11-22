@@ -1,13 +1,9 @@
-
 <section>
-  <div style="display:block">
-    <p>Page de notation des ballet.</p>
-    <p>Accessible seulement par les juges</p>
-    <p>Les item de notation s'adapte en fonction du role du juge</p>
-  </div>
 
-  <button ng-click="resetEpreuve()" ng-if="selectedEpreuve && !selectedEquipe">Reset Epreuve</button>
-  <button ng-click="resetEpreuve()" ng-if="selectedEpreuve && selectedEquipe">Reset Equipe</button>
+  <button class="btn btn-danger" ng-click="resetEpreuve()" ng-if="selectedEpreuve && !selectedEquipe">Reset Epreuve
+  </button>
+  <button class="btn btn-danger" ng-click="resetEquipe()" ng-if="selectedEpreuve && selectedEquipe">Reset Equipe
+  </button>
 
   <!-- choix de la competition -->
   <div ng-repeat="competition in $storage.competitions track by $index">
@@ -20,12 +16,11 @@
           {{etape.intitule}}
 
 
-
           <div class="epreuve">
 
             <div ng-repeat="epreuve in etape.Epreuves">
               <!-- Mettre un onclick qui donne accès à la notation de cette epreuve-->
-              <button ng-click="selectEpreuve(epreuve)">{{epreuve.intitule}}</button>
+              <button class="btn btn-default" ng-click="selectEpreuve(epreuve)">{{epreuve.intitule}}</button>
 
             </div>
 
@@ -38,33 +33,45 @@
     </div>
 
 
-
-
-    <div ng-if="selectedEpreuve">
+    <div ng-if="selectedEpreuve && !selectedEquipe">
       Selection de l'équipe à noté
+      <div ng-repeat="equipe in allEquipes">
+        <button class="btn btn-default" ng-click="selectEquipe(selectedEpreuve.id, equipe)">{{equipe.nom_equipe}}
+        </button>
+      </div>
     </div>
-
-
 
 
     <div id="notationEpreuve" ng-if="selectedEpreuve && selectedEquipe">
-      Notation :
-      <div>
-        {{selectedEpreuve.id}}
+      Notation de l'equipe "{{selectedEquipe.nom_equipe}}" pour l'epreuve {{selectedEpreuve.intitule}}:
+      <div ng-repeat="equipe in selectedEquipeNageurs">
+        <table class="table table-striped">
+
+
+          <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <!-- En fonction du role, la/les colonnes de notes change-->
+            <th>Note</th>
+          </tr>
+          </thead>
+
+
+          <tbody>
+          <tr ng-repeat="nageur in equipe.nageurs">
+            <td>{{nageur.nom}}</td>
+            <td>{{nageur.prenom}}</td>
+            <!-- En fonction du role, la/les colonnes de notes change-->
+            <td><input></td>
+          </tr>
+          </tbody>
+
+        </table>
       </div>
-      <div>
-        {{selectedEpreuve.intitule}}
-      </div>
-      <div>
-        <label>Note : </label>
-        <input>
-        <button>Submit</button>
-      </div>
+
+      <button class="btn btn-success">Submit</button>
     </div>
-
-
-
-
 
 
     <!-- Au clic , on affiches les différentes étapes de la competitions -->

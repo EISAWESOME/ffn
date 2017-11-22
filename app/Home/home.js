@@ -54,7 +54,7 @@ angular.module('myApp.home', ['ngRoute', 'ngStorage'])
           "roles" :[0,3]
         },
 
-        { "nom"   : "Selection du ballet suivant",
+        { "nom"   : "Ballet suivant",
           "icon"  : "img/next.png",
           "url"   : "#!/",
           "roles" :[0,3]

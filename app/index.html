@@ -50,18 +50,37 @@ __█░░░░░░░░░█████░░░████░░██
   <title>ffn</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="/app/bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="/app/bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+  <!-- jquery -->
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+
+  <!-- tether -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/js/tether.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/css/tether.min.css">
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="/app/bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="/app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="page-header">
+  <img src="img/ffn.png" height="115px" width = "200px">
   <ul class="menu">
     <li><a href="#!/">Home</a></li>
     <li><a href="#!/Login">Login</a></li>
     <li><a href="#!/NotationBallet">Notation Ballet</a></li>
     <li>Menu Dev</li>
   </ul>
+</div>
+
+
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -71,9 +90,9 @@ __█░░░░░░░░░█████░░░████░░██
 
 
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/ngstorage/ngStorage.js"></script>
+  <script src="/app/bower_components/angular/angular.js"></script>
+  <script src="/app/bower_components/angular-route/angular-route.js"></script>
+  <script src="/app/bower_components/ngstorage/ngStorage.js"></script>
   <script src="app.js"></script>
   <script src="Login/login.js"></script>
   <script src="Home/home.js"></script>

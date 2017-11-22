@@ -1,4 +1,7 @@
 /* app css stylesheet */
+section div{
+  margin : 10px;
+}
 
 .menu {
   list-style: none;
