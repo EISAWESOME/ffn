@@ -16,12 +16,24 @@ angular.module('myApp.login', ['ngRoute', 'ngStorage'])
 
     // On set les variable de session en dur.
     // l'idée est de les recuperer grace au webservice d'Alexis
-    $scope.$storage = $localStorage;
-    $scope.$storage.ndc = "csimonin";
-    $scope.$storage.pass = "1234";
-    $scope.$storage.role_id = 0;
-    $scope.$storage.user_id = 1;
-    $scope.$storage.role_name = "Juge execution";
+
+    // Roles :
+    // 0 = admin
+    // 1x = juge type
+    //  11 = juge execution
+    //  12 = juge artistique
+    //  13 = juge difficulté
+    // 2 = juge element
+    // 3 = juge arbitre
+    // 4 = coach
+    // 5 = guest
+
+    $rootScope.$storage = $localStorage;
+    $rootScope.$storage.ndc = "csimonin";
+    $rootScope.$storage.pass = "1234";
+    $rootScope.$storage.role_id = 11;
+    $rootScope.$storage.user_id = 1;
+    $rootScope.$storage.role_name = "Juge execution";
 
 
 

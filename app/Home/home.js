@@ -33,7 +33,7 @@ angular.module('myApp.home', ['ngRoute', 'ngStorage'])
         { "nom"   : "Login",
           "icon"  : "img/login.png",
           "url"   : "#!/Login",
-          "roles" :[0,1,2,3,4,5]
+          "roles" :[0,11, 12, 13, 2,3,4,5]
         },
 
         { "nom"   : "Inscription Nageurs",
@@ -45,7 +45,7 @@ angular.module('myApp.home', ['ngRoute', 'ngStorage'])
         { "nom"   : "Notation d'un ballet",
           "icon"  : "img/grade.png",
           "url"   : "#!/NotationBallet",
-          "roles" :[0,1,2]
+          "roles" :[0,11, 12, 13,2]
         },
 
         { "nom"   : "Validation d'un ballet",
@@ -63,7 +63,7 @@ angular.module('myApp.home', ['ngRoute', 'ngStorage'])
         { "nom"   : "Tableau General",
           "icon"  : "img/score.png",
           "url"   : "#!/",
-          "roles" :[0,1,2,3,4,5]
+          "roles" :[0,11, 12, 13,2,3,4,5]
         }];
 
 

@@ -74,7 +74,7 @@ __█░░░░░░░░░█████░░░████░░██
 
 </head>
 <body>
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -103,7 +103,11 @@ __█░░░░░░░░░█████░░░████░░██
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+  <div class="background-wrapper">
+    <div ng-view style = "z-index: 1; background-color: white; height : 100%"  class="container"></div>
+  </div>
+
+
 
 
 

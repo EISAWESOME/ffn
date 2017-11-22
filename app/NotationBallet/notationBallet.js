@@ -12,185 +12,218 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
   .controller('notationBalletCtrl',
     ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q',
       function($scope, $localStorage, $sessionStorage, $rootScope, $q) {
+        $scope.init = function(){
 
-        $scope.$storage = $localStorage;
+          //Initialise la session
+          $scope.$storage = $localStorage;
 
-        //Stock une competition (pour l'instant)
-        // Il faudra creer un écran intermediaire qui affiche les competition disponible à la notation
-        // puis recuperer cette info via une API
-        $scope.$storage.competitions =
-          {
-          0 :
+          //Stock une competition (pour l'instant)
+          // Il faudra creer un écran intermediaire qui affiche les competition disponible à la notation
+          // puis recuperer cette info via une API
+          $scope.$storage.competitions =
             {
-            "id" : 1,
-            "date"  : "25/10/17",
-            "ville" : "Lyon",
-            "Etapes" :
-              {
-                0 :
-                  {
-                  "id" : 10,
-                  "intitule" : "Preliminaire",
-                  "nbConserve" : "5",
-                  "Epreuves" :
+              0 :
+                {
+                  "id" : 1,
+                  "date"  : "25/10/17",
+                  "ville" : "Lyon",
+                  "Etapes" :
                     {
                       0 :
                         {
-                          "id" : 11,
-                          "intitule" : "solo",
-                          "nbNageur" : 1
+                          "id" : 10,
+                          "intitule" : "Preliminaire",
+                          "nbConserve" : "5",
+                          "Epreuves" :
+                            {
+                              0 :
+                                {
+                                  "id" : 11,
+                                  "intitule" : "solo",
+                                  "nbNageur" : 1
+
+                                },
+
+                              1 :
+                                {
+                                  "id" : 12,
+                                  "intitule" : "duo",
+                                  "nbNageur" : 2
+
+                                },
+
+                              2 :
+                                {
+                                  "id" : 13,
+                                  "intitule" : "equipe",
+                                  "nbNageur" : 3
+
+                                }
+                            }
 
                         },
 
                       1 :
                         {
-                          "id" : 12,
-                          "intitule" : "duo",
-                          "nbNageur" : 2
+                          "id" : 20,
+                          "intitule" : "Eliminatoire",
+                          "nbConserve" : "2",
+                          "Epreuves" :
+                            {
+                              0 :
+                                {
+                                  "id" : 21,
+                                  "intitule" : "solo",
+                                  "nbNageur" : 1
+
+                                },
+
+                              1 :
+                                {
+                                  "id" : 22,
+                                  "intitule" : "duo",
+                                  "nbNageur" : 2
+
+                                },
+
+                              2 :
+                                {
+                                  "id" : 23,
+                                  "intitule" : "equipe",
+                                  "nbNageur" : 3
+
+                                }
+                            }
 
                         },
 
                       2 :
                         {
-                          "id" : 13,
-                          "intitule" : "equipe",
-                          "nbNageur" : 3
+                          "id" : 30,
+                          "intitule" : "Finale",
+                          "nbConserve" : "1",
+                          "Epreuves" :
+                            {
+                              0 :
+                                {
+                                  "id" : 31,
+                                  "intitule" : "solo",
+                                  "nbNageur" : 1
+
+                                },
+
+                              1 :
+                                {
+                                  "id" : 32,
+                                  "intitule" : "duo",
+                                  "nbNageur" : 2
+
+                                },
+
+                              2 :
+                                {
+                                  "id" : 33,
+                                  "intitule" : "equipe",
+                                  "nbNageur" : 3
+
+                                }
+                            }
 
                         }
                     }
 
-                  },
 
-                1 :
-                  {
-                    "id" : 20,
-                    "intitule" : "Eliminatoire",
-                    "nbConserve" : "2",
-                    "Epreuves" :
-                      {
-                        0 :
-                          {
-                            "id" : 21,
-                            "intitule" : "solo",
-                            "nbNageur" : 1
+                }
 
-                          },
+            };
 
-                        1 :
-                          {
-                            "id" : 22,
-                            "intitule" : "duo",
-                            "nbNageur" : 2
+          $scope.selectedEpreuve = undefined;
 
-                          },
+          $scope.selectedEquipe = undefined;
+          $scope.selectedEquipeNageurs = undefined;
 
-                        2 :
-                          {
-                            "id" : 23,
-                            "intitule" : "equipe",
-                            "nbNageur" : 3
-
-                          }
-                      }
-
-                  },
-
-                2 :
-                  {
-                    "id" : 30,
-                    "intitule" : "Finale",
-                    "nbConserve" : "1",
-                    "Epreuves" :
-                      {
-                        0 :
-                          {
-                            "id" : 31,
-                            "intitule" : "solo",
-                            "nbNageur" : 1
-
-                          },
-
-                        1 :
-                          {
-                            "id" : 32,
-                            "intitule" : "duo",
-                            "nbNageur" : 2
-
-                          },
-
-                        2 :
-                          {
-                            "id" : 33,
-                            "intitule" : "equipe",
-                            "nbNageur" : 3
-
-                          }
-                      }
-
-                  }
-              }
-
-
+          $scope.notes = {
+            execution : undefined,
+            artistique : undefined,
+            difficulte : undefined,
+            elements : {
+              1 : undefined,
+              2 : undefined,
+              3 : undefined,
+              4 : undefined,
+              5 : undefined
             }
-
           };
 
-        $scope.selectedEpreuve = undefined;
+          $scope.allEquipes = undefined;
 
-        $scope.selectedEquipe = undefined;
-        $scope.selectedEquipeNageurs = undefined;
+          // Doit etre recuperer via l'api
+          $scope.allEquipes = [
+            {id : 901,
+              nbNageur : 1,
+              nom_club : "69 la trik solo"},
 
-        $scope.notes = {
-          execution : undefined,
-          artistique : undefined,
-          difficulte : undefined,
-          elements : {
-            1 : undefined,
-            2 : undefined,
-            3 : undefined,
-            4 : undefined,
-            5 : undefined
-          }
+            {id : 902,
+              nbNageur : 2,
+              nom_club : "69 la trik duo"},
+
+            {id : 903,
+              nbNageur : 3,
+              nom_club : "69 la trik equipe"},
+
+            {id : 801,
+              nbNageur : 1,
+              nom_club : "Les filous du poitou solo"},
+
+            {id : 802,
+              nbNageur : 2,
+              nom_club : "Les filous du poitou duo"},
+
+            {id : 803,
+              nbNageur : 3,
+              nom_club : "Les filous du poitou equipe"}
+          ];
+
+          //On RaZ au cas où
+          $scope.resetEpreuve();
+          $scope.resetEquipe();
+
         };
-
-        $scope.allEquipes = undefined;
-
-        // Doit etre recuperer via l'api
-        $scope.allEquipes = [
-          {id : 901,
-            nbNageur : 1,
-            nom_club : "69 la trik solo"},
-
-          {id : 902,
-            nbNageur : 2,
-            nom_club : "69 la trik duo"},
-
-          {id : 903,
-            nbNageur : 3,
-            nom_club : "69 la trik equipe"},
-
-          {id : 801,
-            nbNageur : 1,
-            nom_club : "Les filous du poitou solo"},
-
-          {id : 802,
-            nbNageur : 2,
-            nom_club : "Les filous du poitou duo"},
-
-          {id : 803,
-            nbNageur : 3,
-            nom_club : "Les filous du poitou equipe"}
-        ];
 
         $scope.resetEpreuve = function(){
 
+          $scope.selectedEquipe = undefined;
           $scope.selectedEpreuve = undefined;
+          $scope.notes = {
+            execution : undefined,
+            artistique : undefined,
+            difficulte : undefined,
+            elements : {
+              1 : undefined,
+              2 : undefined,
+              3 : undefined,
+              4 : undefined,
+              5 : undefined
+            }
+          };
 
         };
 
         $scope.resetEquipe = function(){
 
           $scope.selectedEquipe = undefined;
+          $scope.notes = {
+            execution : undefined,
+            artistique : undefined,
+            difficulte : undefined,
+            elements : {
+              1 : undefined,
+              2 : undefined,
+              3 : undefined,
+              4 : undefined,
+              5 : undefined
+            }
+          };
 
         };
 
@@ -233,7 +266,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 nageurs : {
                   0 : {
                     nom : "Gilot",
-                    prenom : "Luc"
+                    prenom : "Luc",
+                    user_id : 666,
                   }
                 }}
             ];
@@ -248,12 +282,14 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 nageurs : {
                   0 : {
                     nom : "Gilot",
-                    prenom : "Luc"
+                    prenom : "Luc",
+                    user_id : 666
                   },
 
                   1 : {
                     nom : "Alluin",
-                    prenom : "Philippe"
+                    prenom : "Philippe",
+                    user_id : 555
                   }
                 }}
             ];
@@ -268,17 +304,20 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 nageurs : {
                   0 : {
                     nom : "Gilot",
-                    prenom : "Luc"
+                    prenom : "Luc",
+                    user_id : 666
                   },
 
                   1 : {
                     nom : "Alluin",
-                    prenom : "Philippe"
+                    prenom : "Philippe",
+                    user_id : 555
                   },
 
                   2 : {
                     nom : "Malnuit",
-                    prenom : "Agnes"
+                    prenom : "Agnes",
+                    user_id : 444
                   }
                 }}
             ];
@@ -293,7 +332,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 nageurs : {
                   0 : {
                     nom : "Doe",
-                    prenom : "John"
+                    prenom : "John",
+                    user_id : 333
                   }
                 }}
             ];
@@ -308,12 +348,14 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 nageurs : {
                   0 : {
                     nom : "Doe",
-                    prenom : "John"
+                    prenom : "John",
+                    user_id : 333
                   },
 
                   1 : {
                     nom : "Ragout",
-                    prenom : "Dylan"
+                    prenom : "Dylan",
+                    user_id : 222
                   }
                 }}
             ];
@@ -328,17 +370,20 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 nageurs : {
                   0 : {
                     nom : "Doe",
-                    prenom : "John"
+                    prenom : "John",
+                    user_id : 333
                   },
 
                   1 : {
                     nom : "Ragout",
-                    prenom : "Dylan"
+                    prenom : "Dylan",
+                    user_id : 222
                   },
 
                   2 : {
                     nom : "Polnareff",
-                    prenom : "Jean-Pierre"
+                    prenom : "Jean-Pierre",
+                    user_id : 111
                   }
                 }}
             ];
@@ -397,6 +442,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
               // ???
               break;
           }
+
+          console.log($scope.notes);
           console.log(noteAEnvoyer);
 
           //Redirige au menu principal

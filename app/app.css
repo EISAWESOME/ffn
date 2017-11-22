@@ -1,8 +1,17 @@
 /* app css stylesheet */
 
-div section {
-  margin-right : 100px;
-  margin-left: 100px;
+html {
+  height : 100%;
+}
+
+body {
+  height : 100%;
+}
+
+.background-wrapper {
+  height: 100%;
+  background-color : #01ff70;
+  z-index : -1;
 }
 
 .buttonContainer button{
@@ -13,6 +22,10 @@ div section {
 
 .center{
   text-align : center;
+}
+
+.navebar-greeter {
+
 }
 
 .menu {
