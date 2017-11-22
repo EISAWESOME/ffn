@@ -1,6 +1,18 @@
 /* app css stylesheet */
-section div{
-  margin : 10px;
+
+div section {
+  margin-right : 100px;
+  margin-left: 100px;
+}
+
+.buttonContainer button{
+  margin-right : 5px;
+  margin-left: 5px;
+}
+
+
+.center{
+  text-align : center;
 }
 
 .menu {

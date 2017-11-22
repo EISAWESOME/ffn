@@ -54,7 +54,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                         {
                           "id" : 13,
                           "intitule" : "equipe",
-                          "nbNageur" : 5
+                          "nbNageur" : 3
 
                         }
                     }
@@ -88,7 +88,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                           {
                             "id" : 23,
                             "intitule" : "equipe",
-                            "nbNageur" : 5
+                            "nbNageur" : 3
 
                           }
                       }
@@ -122,7 +122,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                           {
                             "id" : 33,
                             "intitule" : "equipe",
-                            "nbNageur" : 5
+                            "nbNageur" : 3
 
                           }
                       }
@@ -140,7 +140,47 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         $scope.selectedEquipe = undefined;
         $scope.selectedEquipeNageurs = undefined;
 
+        $scope.notes = {
+          execution : undefined,
+          artistique : undefined,
+          difficulte : undefined,
+          elements : {
+            1 : undefined,
+            2 : undefined,
+            3 : undefined,
+            4 : undefined,
+            5 : undefined
+          }
+        };
+
         $scope.allEquipes = undefined;
+
+        // Doit etre recuperer via l'api
+        $scope.allEquipes = [
+          {id : 901,
+            nbNageur : 1,
+            nom_club : "69 la trik solo"},
+
+          {id : 902,
+            nbNageur : 2,
+            nom_club : "69 la trik duo"},
+
+          {id : 903,
+            nbNageur : 3,
+            nom_club : "69 la trik equipe"},
+
+          {id : 801,
+            nbNageur : 1,
+            nom_club : "Les filous du poitou solo"},
+
+          {id : 802,
+            nbNageur : 2,
+            nom_club : "Les filous du poitou duo"},
+
+          {id : 803,
+            nbNageur : 3,
+            nom_club : "Les filous du poitou equipe"}
+        ];
 
         $scope.resetEpreuve = function(){
 
@@ -157,10 +197,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         $scope.selectEpreuve = function(epreuve){
 
           $scope.selectedEpreuve = epreuve;
-          $scope.allEquipes = $scope.getEquipes(epreuve.id);
-          console.log($scope.allEquipes);
+          $scope.epreuveEquipes = $scope.getEquipes(epreuve.nbNageur);
           // Il faut recuperer les equipes qui participe a cette epreuve, ainsi que le nom de leur club
-
 
         };
 
@@ -168,35 +206,65 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           $scope.getNageursAsync(idEpreuve, equipe.id).then(function(nageurs){
             $scope.selectedEquipeNageurs = nageurs;
             $scope.selectedEquipe = equipe;
-            console.log($scope.selectedEquipeNageurs);
           });
-
 
         };
 
-        $scope.getEquipes = function(idEpreuve){
+        $scope.getEquipes = function(nbNageur){
           console.log("On appelle l'API getEquipesByEpreuves! C'est pas en dur du tout");
-          console.log(idEpreuve);
-          var equipes = [
-            {id : 999,
-            nom_equipe : "69 la trik"},
 
-            {id : 888,
-              nom_equipe : "Les filous du poitou"}
-          ];
+          var equipes = $scope.allEquipes.filter(function(x){
+            return x.nbNageur == nbNageur;
+          });
 
           return equipes;
         };
 
         $scope.getNageursAsync = function(idEpreuve, idEquipe){
           var nageurDefer = $q.defer();
-          console.log("On appelle l'API getNageursByEquipeEpreuve ! C'est pas en dur du tout");
-          console.log(idEpreuve, idEquipe);
 
-          if(idEquipe == 999){
+          // On recupere les equipe en dur
+          // Il faut recuperer l'equipe concerné grace à l'API
+
+          if(idEquipe == 901){
             var nageurs = [
-              {id_equipe : 999,
-                nom_equipe : "69 la trik",
+              {id_equipe : 901,
+                nom_club : "69 la trik solo",
+                nageurs : {
+                  0 : {
+                    nom : "Gilot",
+                    prenom : "Luc"
+                  }
+                }}
+            ];
+
+            nageurDefer.resolve(nageurs);
+          }
+
+          if(idEquipe == 902){
+            var nageurs = [
+              {id_equipe : 902,
+                nom_club : "69 la trik duo",
+                nageurs : {
+                  0 : {
+                    nom : "Gilot",
+                    prenom : "Luc"
+                  },
+
+                  1 : {
+                    nom : "Alluin",
+                    prenom : "Philippe"
+                  }
+                }}
+            ];
+
+            nageurDefer.resolve(nageurs);
+          }
+
+          if(idEquipe == 903){
+            var nageurs = [
+              {id_equipe : 903,
+                nom_club : "69 la trik equipe",
                 nageurs : {
                   0 : {
                     nom : "Gilot",
@@ -218,10 +286,45 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
             nageurDefer.resolve(nageurs);
           }
 
-          if(idEquipe == 888) {
+          if(idEquipe == 801){
             var nageurs = [
-              {id_equipe : 888,
-                nom_equipe : "Les filou du poitou",
+              {id_equipe : 801,
+                nom_club : "Les filou du poitou solo",
+                nageurs : {
+                  0 : {
+                    nom : "Doe",
+                    prenom : "John"
+                  }
+                }}
+            ];
+
+            nageurDefer.resolve(nageurs);
+          }
+
+          if(idEquipe == 802){
+            var nageurs = [
+              {id_equipe : 802,
+                nom_club : "Les filou du poitou duo",
+                nageurs : {
+                  0 : {
+                    nom : "Doe",
+                    prenom : "John"
+                  },
+
+                  1 : {
+                    nom : "Ragout",
+                    prenom : "Dylan"
+                  }
+                }}
+            ];
+
+            nageurDefer.resolve(nageurs);
+          }
+
+          if(idEquipe == 803){
+            var nageurs = [
+              {id_equipe : 803,
+                nom_club : "Les filou du poitou equipe",
                 nageurs : {
                   0 : {
                     nom : "Doe",
@@ -244,6 +347,60 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           }
 
           return nageurDefer.promise;
+
+        };
+
+        //En fonction du role du juge, on soumet la note qui lui correspond
+        $scope.submitNotes = function(){
+          // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
+          // On recupere ensuite l'ID du ballet
+          // Puis on crée une entrée dans la table NoteParBalletParJuge
+
+          console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
+          console.log('Equipe id : ' + $scope.selectedEquipe.id );
+
+          //Demande confirmation à l'utilisateur
+
+          /*
+          idBallet -> requeter grace a idEpreuve et idClub
+          idJuge -> recuperer lors du login, et stocker dans le $storage
+          idTypeNote -> semblable que le type de juge
+            11 : execution
+            12 : artistique
+            13 : difficulté
+            21 : element 1
+            22 : element 2
+            23 : element 3
+            24 : element 4
+            25 : element 5
+          note -> variable du scope, en fonction de l'id du juge log
+
+          passe toutes ces infos a l'API de creation de note
+          */
+
+          var noteAEnvoyer = undefined;
+
+          switch($scope.$storage.role_id){
+            case 11:
+              noteAEnvoyer = $scope.notes.execution;
+              break;
+            case 12:
+              noteAEnvoyer = $scope.notes.artistique;
+              break;
+            case 13:
+              noteAEnvoyer = $scope.notes.difficulte;
+              break;
+            case 2:
+              noteAEnvoyer = $scope.notes.elements;
+              break;
+            default:
+              // ???
+              break;
+          }
+          console.log(noteAEnvoyer);
+
+          //Redirige au menu principal
+
 
         }
 

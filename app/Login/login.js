@@ -20,7 +20,8 @@ angular.module('myApp.login', ['ngRoute', 'ngStorage'])
     $scope.$storage.ndc = "csimonin";
     $scope.$storage.pass = "1234";
     $scope.$storage.role_id = 0;
-    $scope.$storage.role_name = "admin";
+    $scope.$storage.user_id = 1;
+    $scope.$storage.role_name = "Juge execution";
 
 
 
