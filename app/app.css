@@ -8,11 +8,35 @@ body {
   height : 100%;
 }
 
-.background-wrapper {
-  height: 100%;
-  background-color : #01ff70;
-  z-index : -1;
+section {
+  margin-right: 5%;
+  margin-left : 5%;
 }
+
+.right-banner{
+  background-color: #9d223c;
+  height: 100%;
+  width:15%;
+}
+
+.left-banner{
+  background-color: #01ff70;
+  height: 100%;
+  width:15%;
+}
+
+.view-container{
+  display : flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.view-div{
+  width: 70%;
+
+}
+
 
 .buttonContainer button{
   margin-right : 5px;
@@ -78,4 +102,3 @@ body {
 
 
 }
-
