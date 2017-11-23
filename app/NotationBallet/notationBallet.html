@@ -2,9 +2,9 @@
 
   <div class="row buttonContainer">
     <button class="btn btn-danger" ng-click="resetEpreuve()" ng-if="selectedEpreuve && !selectedEquipe">Reset Epreuve
-  </button>
+    </button>
     <button class="btn btn-danger" ng-click="resetEquipe()" ng-if="selectedEpreuve && selectedEquipe">Reset Equipe
-  </button>
+    </button>
   </div>
 
   <!-- choix de la competition -->
@@ -14,13 +14,16 @@
       {{competition.date}} : {{competition.ville}}
 
       <div class="etape">
-        <div ng-repeat="etape in competition.Etapes">
+        <div ng-repeat="etape in competition.Etapes" ng-if="$storage.currentEtapeId == etape.id">
           {{etape.intitule}}
 
           <div class="epreuve">
             <div class="buttonContainer">
               <!-- Click donne accès à la notation de cette epreuve-->
-              <button ng-repeat="epreuve in etape.Epreuves" class="btn btn-default" ng-click="selectEpreuve(epreuve)">
+              <button ng-repeat="epreuve in etape.Epreuves"
+                      ng-if="$storage.currentEpreuveId + $storage.currentEtapeId  == epreuve.id"
+                      class="btn btn-default"
+                      ng-click="selectEpreuve(epreuve)">
 
                 {{epreuve.intitule}}
 
@@ -37,7 +40,10 @@
     <div ng-if="selectedEpreuve && !selectedEquipe">
       Selection de le club à noté
       <div class="buttonContainer">
-        <button ng-repeat="equipe in epreuveEquipes" class="btn btn-default" ng-click="selectEquipe(selectedEpreuve.id, equipe)">
+        <button ng-repeat="equipe in epreuveEquipes"
+                class="btn btn-default"
+                ng-if="equipe.id == $storage.currentEquipeId + $storage.currentEpreuveId"
+                ng-click="selectEquipe(selectedEpreuve.id, equipe)">
           {{equipe.nom_club}}
         </button>
       </div>
@@ -49,7 +55,7 @@
       <div class="row">
         <h4 class="center">Notation de l'equipe "{{selectedEquipe.nom_club}}" pour l'epreuve {{selectedEpreuve.intitule}}: </h4>
       </div>
-      <div ng-repeat="equipe in selectedEquipeNageurs" class="row col-lg-6" style="margin:auto !important; width:50% !important;">
+      <div ng-repeat="equipe in selectedEquipeNageurs" class="row col-lg-10" style="margin:auto !important;">
 
         <table class="table table-striped">
 
@@ -87,11 +93,11 @@
                 <input ng-if="$storage.role_id == 13" id="noteDifficulte" class="form-control" required min="0" max="10" step="0.1" type="number" ng-model="notes.difficulte[nageur.user_id]">
               </td>
 
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement1" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.element.1[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement2" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.element.2[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement3" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.element.3[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement4" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.element.4[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement5" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.element.5[nageur.user_id]"> </td>
+              <td ng-if="$storage.role_id == 2"> <input id="noteElement1" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.un[nageur.user_id]"> </td>
+              <td ng-if="$storage.role_id == 2"> <input id="noteElement2" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.deux[nageur.user_id]"> </td>
+              <td ng-if="$storage.role_id == 2"> <input id="noteElement3" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.trois[nageur.user_id]"> </td>
+              <td ng-if="$storage.role_id == 2"> <input id="noteElement4" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.quatre[nageur.user_id]"> </td>
+              <td ng-if="$storage.role_id == 2"> <input id="noteElement5" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.cinq[nageur.user_id]"> </td>
 
             </tr>
           </tbody>

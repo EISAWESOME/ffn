@@ -14,129 +14,6 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
       function($scope, $localStorage, $sessionStorage, $rootScope, $q) {
         $scope.init = function(){
 
-          //Initialise la session
-          $scope.$storage = $localStorage;
-
-          //Stock une competition (pour l'instant)
-          // Il faudra creer un écran intermediaire qui affiche les competition disponible à la notation
-          // puis recuperer cette info via une API
-          $scope.$storage.competitions =
-            {
-              0 :
-                {
-                  "id" : 1,
-                  "date"  : "25/10/17",
-                  "ville" : "Lyon",
-                  "Etapes" :
-                    {
-                      0 :
-                        {
-                          "id" : 10,
-                          "intitule" : "Preliminaire",
-                          "nbConserve" : "5",
-                          "Epreuves" :
-                            {
-                              0 :
-                                {
-                                  "id" : 11,
-                                  "intitule" : "solo",
-                                  "nbNageur" : 1
-
-                                },
-
-                              1 :
-                                {
-                                  "id" : 12,
-                                  "intitule" : "duo",
-                                  "nbNageur" : 2
-
-                                },
-
-                              2 :
-                                {
-                                  "id" : 13,
-                                  "intitule" : "equipe",
-                                  "nbNageur" : 3
-
-                                }
-                            }
-
-                        },
-
-                      1 :
-                        {
-                          "id" : 20,
-                          "intitule" : "Eliminatoire",
-                          "nbConserve" : "2",
-                          "Epreuves" :
-                            {
-                              0 :
-                                {
-                                  "id" : 21,
-                                  "intitule" : "solo",
-                                  "nbNageur" : 1
-
-                                },
-
-                              1 :
-                                {
-                                  "id" : 22,
-                                  "intitule" : "duo",
-                                  "nbNageur" : 2
-
-                                },
-
-                              2 :
-                                {
-                                  "id" : 23,
-                                  "intitule" : "equipe",
-                                  "nbNageur" : 3
-
-                                }
-                            }
-
-                        },
-
-                      2 :
-                        {
-                          "id" : 30,
-                          "intitule" : "Finale",
-                          "nbConserve" : "1",
-                          "Epreuves" :
-                            {
-                              0 :
-                                {
-                                  "id" : 31,
-                                  "intitule" : "solo",
-                                  "nbNageur" : 1
-
-                                },
-
-                              1 :
-                                {
-                                  "id" : 32,
-                                  "intitule" : "duo",
-                                  "nbNageur" : 2
-
-                                },
-
-                              2 :
-                                {
-                                  "id" : 33,
-                                  "intitule" : "equipe",
-                                  "nbNageur" : 3
-
-                                }
-                            }
-
-                        }
-                    }
-
-
-                }
-
-            };
-
           $scope.selectedEpreuve = undefined;
 
           $scope.selectedEquipe = undefined;
@@ -147,11 +24,11 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
             artistique : undefined,
             difficulte : undefined,
             elements : {
-              1 : undefined,
-              2 : undefined,
-              3 : undefined,
-              4 : undefined,
-              5 : undefined
+              un : undefined,
+              deux : undefined,
+              trois : undefined,
+              quatre : undefined,
+              cinq : undefined
             }
           };
 
@@ -199,11 +76,11 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
             artistique : undefined,
             difficulte : undefined,
             elements : {
-              1 : undefined,
-              2 : undefined,
-              3 : undefined,
-              4 : undefined,
-              5 : undefined
+              un : undefined,
+              deux : undefined,
+              trois : undefined,
+              quatre : undefined,
+              cinq : undefined
             }
           };
 
@@ -217,11 +94,11 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
             artistique : undefined,
             difficulte : undefined,
             elements : {
-              1 : undefined,
-              2 : undefined,
-              3 : undefined,
-              4 : undefined,
-              5 : undefined
+              un : undefined,
+              deux : undefined,
+              trois : undefined,
+              quatre : undefined,
+              cinq : undefined
             }
           };
 
@@ -397,56 +274,66 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
 
         //En fonction du role du juge, on soumet la note qui lui correspond
         $scope.submitNotes = function(){
-          // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
-          // On recupere ensuite l'ID du ballet
-          // Puis on crée une entrée dans la table NoteParBalletParJuge
 
-          console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
-          console.log('Equipe id : ' + $scope.selectedEquipe.id );
+          var r = confirm("Valider ces notes ?");
+          if (r == true) {
 
-          //Demande confirmation à l'utilisateur
 
-          /*
-          idBallet -> requeter grace a idEpreuve et idClub
-          idJuge -> recuperer lors du login, et stocker dans le $storage
-          idTypeNote -> semblable que le type de juge
-            11 : execution
-            12 : artistique
-            13 : difficulté
-            21 : element 1
-            22 : element 2
-            23 : element 3
-            24 : element 4
-            25 : element 5
-          note -> variable du scope, en fonction de l'id du juge log
+            // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
+            // On recupere ensuite l'ID du ballet
+            // Puis on crée une entrée dans la table NoteParBalletParJuge
 
-          passe toutes ces infos a l'API de creation de note
-          */
+            console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
+            console.log('Equipe id : ' + $scope.selectedEquipe.id );
 
-          var noteAEnvoyer = undefined;
+            //Demande confirmation à l'utilisateur
 
-          switch($scope.$storage.role_id){
-            case 11:
-              noteAEnvoyer = $scope.notes.execution;
-              break;
-            case 12:
-              noteAEnvoyer = $scope.notes.artistique;
-              break;
-            case 13:
-              noteAEnvoyer = $scope.notes.difficulte;
-              break;
-            case 2:
-              noteAEnvoyer = $scope.notes.elements;
-              break;
-            default:
-              // ???
-              break;
+            /*
+            idBallet -> requeter grace a idEpreuve et idClub
+            idJuge -> recuperer lors du login, et stocker dans le $storage
+            idTypeNote -> semblable que le type de juge
+              11 : execution
+              12 : artistique
+              13 : difficulté
+              21 : element 1
+              22 : element 2
+              23 : element 3
+              24 : element 4
+              25 : element 5
+            note -> variable du scope, en fonction de l'id du juge log
+
+            passe toutes ces infos a l'API de creation de note
+            */
+
+            var noteAEnvoyer = undefined;
+
+            switch($scope.$storage.role_id){
+              case 11:
+                noteAEnvoyer = $scope.notes.execution;
+                break;
+              case 12:
+                noteAEnvoyer = $scope.notes.artistique;
+                break;
+              case 13:
+                noteAEnvoyer = $scope.notes.difficulte;
+                break;
+              case 2:
+                noteAEnvoyer = $scope.notes.elements;
+                break;
+              default:
+                // ???
+                break;
+            }
+
+            console.log($scope.notes);
+            console.log(noteAEnvoyer);
+
+            //Redirige au menu principal
+
+          } else {
+            console.log("You pressed Cancel!");
           }
 
-          console.log($scope.notes);
-          console.log(noteAEnvoyer);
-
-          //Redirige au menu principal
 
 
         }

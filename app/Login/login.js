@@ -28,12 +28,14 @@ angular.module('myApp.login', ['ngRoute', 'ngStorage'])
     // 4 = coach
     // 5 = guest
 
+    /*
     $rootScope.$storage = $localStorage;
     $rootScope.$storage.ndc = "csimonin";
     $rootScope.$storage.pass = "1234";
     $rootScope.$storage.role_id = 11;
     $rootScope.$storage.user_id = 1;
     $rootScope.$storage.role_name = "Juge execution";
+    */
 
 
 
