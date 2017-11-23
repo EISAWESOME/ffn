@@ -275,64 +275,72 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         //En fonction du role du juge, on soumet la note qui lui correspond
         $scope.submitNotes = function(){
 
-          var r = confirm("Valider ces notes ?");
-          if (r == true) {
+          /*
+          idBallet -> requeter grace a idEpreuve et idClub
+          idJuge -> recuperer lors du login, et stocker dans le $storage
+          idTypeNote -> semblable que le type de juge
+            11 : execution
+            12 : artistique
+            13 : difficulté
+            21 : element 1
+            22 : element 2
+            23 : element 3
+            24 : element 4
+            25 : element 5
+          note -> variable du scope, en fonction de l'id du juge log
+
+          passe toutes ces infos a l'API de creation de note
+          */
+
+          var noteAEnvoyer = undefined;
+
+          switch($scope.$storage.role_id){
+            case 11:
+              noteAEnvoyer = $scope.notes.execution;
+              break;
+            case 12:
+              noteAEnvoyer = $scope.notes.artistique;
+              break;
+            case 13:
+              noteAEnvoyer = $scope.notes.difficulte;
+              break;
+            case 2:
+              noteAEnvoyer = $scope.notes.elements;
+              break;
+            default:
+              // ???
+              break;
+          }
+
+          if(noteAEnvoyer === undefined || noteAEnvoyer.un === undefined || noteAEnvoyer.deux === undefined || noteAEnvoyer.trois === undefined || noteAEnvoyer.quatre === undefined || noteAEnvoyer.cinq === undefined ){
+            alert("Renseignez toutes les notes")
+          } else {
+            var r = confirm("Valider ces notes ?");
+            if (r == true) {
 
 
-            // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
-            // On recupere ensuite l'ID du ballet
-            // Puis on crée une entrée dans la table NoteParBalletParJuge
+              // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
+              // On recupere ensuite l'ID du ballet
+              // Puis on crée une entrée dans la table NoteParBalletParJuge
 
-            console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
-            console.log('Equipe id : ' + $scope.selectedEquipe.id );
+              console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
+              console.log('Equipe id : ' + $scope.selectedEquipe.id );
 
-            //Demande confirmation à l'utilisateur
 
-            /*
-            idBallet -> requeter grace a idEpreuve et idClub
-            idJuge -> recuperer lors du login, et stocker dans le $storage
-            idTypeNote -> semblable que le type de juge
-              11 : execution
-              12 : artistique
-              13 : difficulté
-              21 : element 1
-              22 : element 2
-              23 : element 3
-              24 : element 4
-              25 : element 5
-            note -> variable du scope, en fonction de l'id du juge log
 
-            passe toutes ces infos a l'API de creation de note
-            */
+              console.log($scope.notes);
+              console.log(noteAEnvoyer);
 
-            var noteAEnvoyer = undefined;
+              //Redirige au menu principal
 
-            switch($scope.$storage.role_id){
-              case 11:
-                noteAEnvoyer = $scope.notes.execution;
-                break;
-              case 12:
-                noteAEnvoyer = $scope.notes.artistique;
-                break;
-              case 13:
-                noteAEnvoyer = $scope.notes.difficulte;
-                break;
-              case 2:
-                noteAEnvoyer = $scope.notes.elements;
-                break;
-              default:
-                // ???
-                break;
+            } else {
+              console.log("You pressed Cancel!");
             }
 
-            console.log($scope.notes);
-            console.log(noteAEnvoyer);
 
-            //Redirige au menu principal
-
-          } else {
-            console.log("You pressed Cancel!");
           }
+
+
 
 
 
