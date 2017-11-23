@@ -1,2 +1,6 @@
 ## Projet transverse
-Oui
+Pour utiliser :
+  npm install
+  Ouvrir un terminal : http-server -os
+  Voilà
+  
