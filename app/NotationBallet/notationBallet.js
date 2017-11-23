@@ -10,8 +10,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
   }])
 
   .controller('notationBalletCtrl',
-    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q',
-      function($scope, $localStorage, $sessionStorage, $rootScope, $q) {
+    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm',
+      function($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm) {
         $scope.init = function(){
 
           $scope.selectedEpreuve = undefined;
@@ -292,7 +292,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           passe toutes ces infos a l'API de creation de note
           */
 
-          var noteAEnvoyer = undefined;
+          var noteAEnvoyer = {};
 
           switch($scope.$storage.role_id){
             case 11:
@@ -305,38 +305,56 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
               noteAEnvoyer = $scope.notes.difficulte;
               break;
             case 2:
-              noteAEnvoyer = $scope.notes.elements;
+              var emptyElement = Enumerable.from($scope.notes.elements).firstOrDefault(function(element){
+                return !element.value;
+              });
+              if(!emptyElement){
+                noteAEnvoyer = $scope.notes.elements;
+              }
               break;
             default:
               // ???
               break;
           }
 
-          if(noteAEnvoyer === undefined || noteAEnvoyer.un === undefined || noteAEnvoyer.deux === undefined || noteAEnvoyer.trois === undefined || noteAEnvoyer.quatre === undefined || noteAEnvoyer.cinq === undefined ){
-            alert("Renseignez toutes les notes")
+          console.log(noteAEnvoyer);
+
+          if(!jQuery.isEmptyObject(noteAEnvoyer)){
+
+            console.log(noteAEnvoyer);
+            $ngConfirm({
+              title: 'Envoyer ces notes ?',
+              content: "Confirmer l'envoi de ces notes.",
+              scope: $scope,
+              buttons: {
+                submit: {
+                  text: 'Envoyer',
+                  btnClass: 'btn-blue',
+                  action: function(){
+
+                    // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
+                    // On recupere ensuite l'ID du ballet
+                    // Puis on crée une entrée dans la table NoteParBalletParJuge
+
+                    console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
+                    console.log('Equipe id : ' + $scope.selectedEquipe.id );
+
+                    console.log($scope.notes);
+                    console.log(noteAEnvoyer);
+                  }
+                },
+                cancel: {
+                  text: 'Annuler',
+                  btnClass: 'btn-orange',
+                  action: function(scope, button){
+                  }
+                }
+              }
+            });
+
           } else {
-            var r = confirm("Valider ces notes ?");
-            if (r == true) {
 
-
-              // Avec l'id de l'epreuve et du club selectionné, on peut en deduire, on peut trouver l'id du ballet
-              // On recupere ensuite l'ID du ballet
-              // Puis on crée une entrée dans la table NoteParBalletParJuge
-
-              console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
-              console.log('Equipe id : ' + $scope.selectedEquipe.id );
-
-
-
-              console.log($scope.notes);
-              console.log(noteAEnvoyer);
-
-              //Redirige au menu principal
-
-            } else {
-              console.log("You pressed Cancel!");
-            }
-
+            alert("Renseignez toutes les notes");
 
           }
 

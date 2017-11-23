@@ -4,6 +4,8 @@
 var app = angular.module('myApp', [
   'ngRoute',
   'ngStorage',
+  'ui.bootstrap',
+  'cp.ngConfirm',
   'myApp.login',
   'myApp.home',
   'myApp.notationBallet',
@@ -21,7 +23,7 @@ app.run(function($localStorage, $sessionStorage, $rootScope){
   $rootScope.$storage = $localStorage;
   $rootScope.$storage.ndc = "csimonin";
   $rootScope.$storage.pass = "1234";
-  $rootScope.$storage.role_id = 2;
+  $rootScope.$storage.role_id = 11;
   $rootScope.$storage.user_id = 1;
   $rootScope.$storage.role_name = "Juge Execution";
 
