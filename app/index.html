@@ -53,13 +53,14 @@ __█░░░░░░░░░█████░░░████░░██
   <link rel="stylesheet" href="/app/bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="/app/bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
+
+  <script src="/app/bower_components/angular/angular.js"></script>
+
   <script src="/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
   <!-- jquery -->
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-    crossorigin="anonymous"></script>
+  <script src="/app/bower_components/jquery/dist/jquery.min.js"></script>
+
 
   <!-- tether -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/js/tether.min.js"></script>
@@ -72,9 +73,20 @@ __█░░░░░░░░░█████░░░████░░██
   <!-- linq -->
   <script src="/node_modules/linq/linq.min.js"></script>
 
+  <!-- uib -->
+  <script src="/app/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+
+  <!-- angular confirm -->
+  <script src="/app/bower_components/angular-confirm/dist/angular-confirm.min.js"></script>
+  <link rel="stylesheet" href="/app/bower_components/angular-confirm/dist/angular-confirm.min.css">
+
+
+
+
 
 </head>
 <body>
+
 <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -92,9 +104,8 @@ __█░░░░░░░░░█████░░░████░░██
       </li>
     </ul>
   </div>
-
-
 </nav>
+
 
 
 
@@ -110,11 +121,6 @@ __█░░░░░░░░░█████░░░████░░██
   </div>
 
 
-
-
-
-
-  <script src="/app/bower_components/angular/angular.js"></script>
   <script src="/app/bower_components/angular-route/angular-route.js"></script>
   <script src="/app/bower_components/ngstorage/ngStorage.js"></script>
   <script src="app.js"></script>
