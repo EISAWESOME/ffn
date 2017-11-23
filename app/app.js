@@ -9,6 +9,7 @@ var app = angular.module('myApp', [
   'myApp.login',
   'myApp.home',
   'myApp.notationBallet',
+  'myApp.balletSuivant',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -23,7 +24,7 @@ app.run(function($localStorage, $sessionStorage, $rootScope){
   $rootScope.$storage = $localStorage;
   $rootScope.$storage.ndc = "csimonin";
   $rootScope.$storage.pass = "1234";
-  $rootScope.$storage.role_id = 11;
+  $rootScope.$storage.role_id = 0;
   $rootScope.$storage.user_id = 1;
   $rootScope.$storage.role_name = "Juge Execution";
 
@@ -72,7 +73,7 @@ app.run(function($localStorage, $sessionStorage, $rootScope){
 
     { "nom"   : "Ballet suivant",
       "icon"  : "img/next.png",
-      "url"   : "#!/",
+      "url"   : "#!/BalletSuivant",
       "roles" :[0,3]
     },
 
