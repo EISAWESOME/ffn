@@ -10,8 +10,8 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
   }])
 
   .controller('balletSuivantCtrl',
-    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm',
-      function($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm) {
+    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window',
+      function($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window) {
         $scope.init = function(){
 
           $scope.selectedEtape = undefined;
@@ -87,6 +87,11 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
         };
 
+        $scope.getLength = function(obj){
+
+          return Object.keys(obj).length;
+
+        };
 
 
         $scope.getEquipes = function(nbNageur){
@@ -99,6 +104,49 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
           console.log(equipes);
 
           return equipes;
+        };
+
+        $scope.submitNext = function(){
+          //Demande confirmation
+
+          $ngConfirm({
+            title: 'Validez votre choix',
+            content: "Confirmer la selection du ballet suivant",
+            scope: $scope,
+            buttons: {
+              submit: {
+                text: 'Envoyer',
+                btnClass: 'btn-blue',
+                action: function(){
+
+                  //Stock dans le ballet suivant dans le storage
+
+                  $scope.$storage.selectedEtape = $scope.selectedEtape;
+                  $scope.$storage.selectedEpreuve = $scope.selectedEpreuve;
+                  $scope.$storage.selectedEquipe = $scope.selectedEquipe;
+                  $scope.$storage.selectedTypeBallet = $scope.selectedTypeBallet;
+
+                  console.log("Stockage des infos du prochain ballet !");
+
+                  //Redirige vers la page d'accueil
+
+                  $window.location.href = '#!/';
+                }
+              },
+              cancel: {
+                text: 'Annuler',
+                btnClass: 'btn-orange',
+                action: function(){
+                  console.log('abort');
+                }
+              }
+            }
+          });
+
+
+
+
+
         };
 
 

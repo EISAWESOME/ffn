@@ -13,10 +13,12 @@
     <div id="selectionEtape" class="row">
 
 
-      <div class="btn-group etape">
+      <div class="btn-group etape nextBallet">
 
+        <!-- Ca marche tkt-->
           <label ng-repeat="etape in competition.Etapes"
                  class="btn btn-primary"
+                 style=" width: {{100 / getLength(competition.Etapes) }}%"
                  ng-model="$parent.$parent.selectedEtape"
                  ng-click="selectEtape(etape)"
                  uib-btn-radio="etape">{{etape.intitule}}</label>
@@ -27,10 +29,11 @@
 
     <div id="selectionEpreuve" class="row">
 
-      <div class="btn-group epreuve" ng-repeat="etape in competition.Etapes" ng-if="selectedEtape.id == etape.id">
+      <div class="btn-group epreuve nextBallet" ng-repeat="etape in competition.Etapes" ng-if="selectedEtape.id == etape.id">
 
         <label ng-repeat="epreuve in etape.Epreuves"
                class="btn btn-primary"
+               style=" width: {{100 / getLength(etape.Epreuves) }}%"
                ng-model="$parent.$parent.$parent.selectedEpreuve"
                ng-click="selectEpreuve(epreuve)"
                uib-btn-radio="epreuve">{{epreuve.intitule}}</label>
@@ -40,10 +43,11 @@
 
     <div id="selectionEquipe" class="row">
 
-      <div class="btn-group equipe" ng-if="selectedEpreuve">
+      <div class="btn-group equipe  nextBallet" ng-if="selectedEpreuve">
 
         <label ng-repeat="equipe in epreuveEquipes"
                class="btn btn-primary"
+               style=" width: {{100 / getLength(epreuveEquipes) }}%"
                ng-model="$parent.$parent.selectedEquipe"
                ng-click="selectEquipe(selectedEpreuve.id, equipe)"
                uib-btn-radio="equipe">{{equipe.nom_club}}</label>
@@ -54,15 +58,17 @@
 
     <div id="selectionTypeBallet" class="row">
 
-      <div class="btn-group typeBallet" ng-if="$parent.selectedEquipe">
+      <div class="btn-group typeBallet nextBallet" ng-if="$parent.selectedEquipe">
 
         <label class="btn btn-primary"
                ng-model="selectedTypeBallet"
+               style=" width: 50%"
                ng-click="selectTypeBallet('Libre')"
                uib-btn-radio="'Libre'">Libre</label>
 
         <label class="btn btn-primary"
                ng-model="selectedTypeBallet"
+               style=" width: 50%"
                ng-click="selectTypeBallet('Impose')"
                uib-btn-radio="'Impose'">Imposé</label>
 
@@ -71,7 +77,10 @@
 
     </div>
 
-    <button ng-if="selectedTypeBallet"> Submit </button>
+    <button ng-if="selectedTypeBallet"
+            ng-click="submitNext()"
+            style="width: 100%"
+            class="btn btn-success"> Submit </button>
 
 
 

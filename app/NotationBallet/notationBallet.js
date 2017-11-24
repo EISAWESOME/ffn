@@ -341,6 +341,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
 
                     console.log($scope.notes);
                     console.log(noteAEnvoyer);
+
                   }
                 },
                 cancel: {

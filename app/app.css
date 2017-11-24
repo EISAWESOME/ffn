@@ -37,6 +37,9 @@ section {
 
 }
 
+.nextBallet{
+  width:100%;
+}
 
 .buttonContainer button{
   margin-right : 5px;
@@ -46,10 +49,6 @@ section {
 
 .center{
   text-align : center;
-}
-
-.navebar-greeter {
-
 }
 
 
