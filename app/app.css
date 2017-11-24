@@ -1,59 +1,57 @@
 /* app css stylesheet */
 
 html {
-  height : 100%;
+  height: 100%;
 }
 
 body {
-  height : 100%;
+  height: 100%;
 }
 
 section {
   margin-right: 5%;
-  margin-left : 5%;
+  margin-left: 5%;
 }
 
-.right-banner{
+.right-banner {
   background-color: #9d223c;
   height: 100%;
-  width:15%;
+  width: 15%;
 }
 
-.left-banner{
+.left-banner {
   background-color: #01ff70;
   height: 100%;
-  width:15%;
+  width: 15%;
 }
 
-.view-container{
-  display : flex;
+.view-container {
+  display: flex;
   flex-direction: row;
   height: 100%;
   width: 100%;
 }
 
-.view-div{
+.view-div {
   width: 70%;
 
 }
 
-.nextBallet{
-  width:100%;
+.nextBallet {
+  width: 100%;
 }
 
-.buttonContainer button{
-  margin-right : 5px;
+.buttonContainer button {
+  margin-right: 5px;
   margin-left: 5px;
 }
 
-
-.center{
-  text-align : center;
+.center {
+  text-align: center;
 }
 
-
-.error{
-  color : red;
+.error {
+  color: red;
 }
 
 .pageEntry {
@@ -66,15 +64,14 @@ section {
   height: 100px;
   margin: 3px;
   padding: 3px;
-  border : solid black 1px;
+  border: solid black 1px;
 }
 
-.pageEntry img{
+.pageEntry img {
 
   position: absolute;
   left: 29px;
   bottom: 5px;
   display: block;
-
 
 }

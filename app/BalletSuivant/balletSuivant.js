@@ -2,7 +2,7 @@
 
 angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/BalletSuivant', {
       templateUrl: 'BalletSuivant/balletSuivant.html',
       controller: 'balletSuivantCtrl'
@@ -11,8 +11,8 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
   .controller('balletSuivantCtrl',
     ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window',
-      function($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window) {
-        $scope.init = function(){
+      function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window) {
+        $scope.init = function () {
 
           $scope.selectedEtape = undefined;
 
@@ -21,38 +21,50 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
           $scope.selectedEquipe = undefined;
           $scope.selectedEquipeNageurs = undefined;
 
-          $scope.selectedTypeBallet = undefined ;
+          $scope.selectedTypeBallet = undefined;
 
           // Doit etre recuperer via l'api
           $scope.allEquipes = [
-            {id : 901,
-              nbNageur : 1,
-              nom_club : "69 la trik solo"},
+            {
+              id: 901,
+              nbNageur: 1,
+              nom_club: "69 la trik solo"
+            },
 
-            {id : 902,
-              nbNageur : 2,
-              nom_club : "69 la trik duo"},
+            {
+              id: 902,
+              nbNageur: 2,
+              nom_club: "69 la trik duo"
+            },
 
-            {id : 903,
-              nbNageur : 3,
-              nom_club : "69 la trik equipe"},
+            {
+              id: 903,
+              nbNageur: 3,
+              nom_club: "69 la trik equipe"
+            },
 
-            {id : 801,
-              nbNageur : 1,
-              nom_club : "Les filous du poitou solo"},
+            {
+              id: 801,
+              nbNageur: 1,
+              nom_club: "Les filous du poitou solo"
+            },
 
-            {id : 802,
-              nbNageur : 2,
-              nom_club : "Les filous du poitou duo"},
+            {
+              id: 802,
+              nbNageur: 2,
+              nom_club: "Les filous du poitou duo"
+            },
 
-            {id : 803,
-              nbNageur : 3,
-              nom_club : "Les filous du poitou equipe"}
+            {
+              id: 803,
+              nbNageur: 3,
+              nom_club: "Les filous du poitou equipe"
+            }
           ];
 
         };
 
-        $scope.selectEtape = function(etape){
+        $scope.selectEtape = function (etape) {
 
           console.log(etape);
           $scope.selectedEtape = etape;
@@ -64,7 +76,7 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
         };
 
-        $scope.selectEpreuve = function(epreuve){
+        $scope.selectEpreuve = function (epreuve) {
 
           console.log(epreuve);
           $scope.selectedEquipe = undefined;
@@ -75,29 +87,29 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
         };
 
-        $scope.selectEquipe = function(idEpreuve, equipe){
+        $scope.selectEquipe = function (idEpreuve, equipe) {
           $scope.selectedTypeBallet = undefined;
           $scope.selectedEquipe = equipe;
 
         };
 
-        $scope.selectTypeBallet = function(type){
+        $scope.selectTypeBallet = function (type) {
           $scope.selectedTypeBallet = type;
           console.log($scope.selectedTypeBallet)
 
         };
 
-        $scope.getLength = function(obj){
+        $scope.getLength = function (obj) {
 
           return Object.keys(obj).length;
 
         };
 
 
-        $scope.getEquipes = function(nbNageur){
+        $scope.getEquipes = function (nbNageur) {
           console.log("On appelle l'API getEquipesByEpreuves! C'est pas en dur du tout");
 
-          var equipes = $scope.allEquipes.filter(function(x){
+          var equipes = $scope.allEquipes.filter(function (x) {
             return x.nbNageur == nbNageur;
           });
 
@@ -106,7 +118,7 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
           return equipes;
         };
 
-        $scope.submitNext = function(){
+        $scope.submitNext = function () {
           //Demande confirmation
 
           $ngConfirm({
@@ -117,7 +129,7 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
               submit: {
                 text: 'Envoyer',
                 btnClass: 'btn-blue',
-                action: function(){
+                action: function () {
 
                   //Stock dans le ballet suivant dans le storage
 
@@ -136,15 +148,12 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
               cancel: {
                 text: 'Annuler',
                 btnClass: 'btn-orange',
-                action: function(){
+                action: function () {
                   console.log('abort');
                 }
               }
             }
           });
-
-
-
 
 
         };

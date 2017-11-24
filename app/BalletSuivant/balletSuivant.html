@@ -16,12 +16,12 @@
       <div class="btn-group etape nextBallet">
 
         <!-- Ca marche tkt-->
-          <label ng-repeat="etape in competition.Etapes"
-                 class="btn btn-primary"
-                 style=" width: {{100 / getLength(competition.Etapes) }}%"
-                 ng-model="$parent.$parent.selectedEtape"
-                 ng-click="selectEtape(etape)"
-                 uib-btn-radio="etape">{{etape.intitule}}</label>
+        <label ng-repeat="etape in competition.Etapes"
+               class="btn btn-primary"
+               style=" width: {{100 / getLength(competition.Etapes) }}%"
+               ng-model="$parent.$parent.selectedEtape"
+               ng-click="selectEtape(etape)"
+               uib-btn-radio="etape">{{etape.intitule}}</label>
 
       </div>
 
@@ -29,7 +29,8 @@
 
     <div id="selectionEpreuve" class="row">
 
-      <div class="btn-group epreuve nextBallet" ng-repeat="etape in competition.Etapes" ng-if="selectedEtape.id == etape.id">
+      <div class="btn-group epreuve nextBallet" ng-repeat="etape in competition.Etapes"
+           ng-if="selectedEtape.id == etape.id">
 
         <label ng-repeat="epreuve in etape.Epreuves"
                class="btn btn-primary"
@@ -80,11 +81,8 @@
     <button ng-if="selectedTypeBallet"
             ng-click="submitNext()"
             style="width: 100%"
-            class="btn btn-success"> Submit </button>
-
-
-
-
+            class="btn btn-success"> Submit
+    </button>
 
 
     <!-- Au clic , on affiches les différentes étapes de la competitions -->

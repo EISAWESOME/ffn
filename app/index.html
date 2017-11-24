@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
   <!--
 
@@ -61,9 +65,6 @@ __█░░░░░░░░░█████░░░████░░██
 
   <script src="/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
-
-
-
   <!-- tether -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/js/tether.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/css/tether.min.css">
@@ -88,19 +89,17 @@ __█░░░░░░░░░█████░░░████░░██
   <script src="/app/bower_components/ngToast/dist/ngToast.min.js"></script>
   <link rel="stylesheet" href="/app/bower_components/ngToast/dist/ngToast.min.css">
 
-
-
-
-
 </head>
 <body>
 
 <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarNavDropdown" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#!/">
-    <img src="img/ffn.png" height="55px" width = "100px" alt="">
+    <img src="img/ffn.png" height="55px" width="100px" alt="">
   </a>
 
 
@@ -114,30 +113,27 @@ __█░░░░░░░░░█████░░░████░░██
   </div>
 </nav>
 
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="view-container">
+  <div class="right-banner"></div>
+  <div ng-view class="view-div"></div>
+  <div class="left-banner"></div>
+</div>
 
 
-
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <div class="view-container">
-    <div class="right-banner"></div>
-    <div ng-view class="view-div"></div>
-    <div class="left-banner"></div>
-  </div>
-
-
-  <script src="/app/bower_components/angular-route/angular-route.js"></script>
-  <script src="/app/bower_components/ngstorage/ngStorage.js"></script>
-  <script src="app.js"></script>
-  <script src="Login/login.js"></script>
-  <script src="Home/home.js"></script>
-  <script src="NotationBallet/notationBallet.js"></script>
-  <script src="BalletSuivant/balletSuivant.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+<script src="/app/bower_components/angular-route/angular-route.js"></script>
+<script src="/app/bower_components/ngstorage/ngStorage.js"></script>
+<script src="app.js"></script>
+<script src="Login/login.js"></script>
+<script src="Home/home.js"></script>
+<script src="NotationBallet/notationBallet.js"></script>
+<script src="BalletSuivant/balletSuivant.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
 </body>
 </html>

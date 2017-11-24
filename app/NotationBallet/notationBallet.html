@@ -53,7 +53,8 @@
     <!--Ici -->
     <div id="notationEpreuve" ng-if="selectedEpreuve && selectedEquipe">
       <div class="row">
-        <h4 class="center">Notation de l'equipe "{{selectedEquipe.nom_club}}" pour l'epreuve {{selectedEpreuve.intitule}}: </h4>
+        <h4 class="center">Notation de l'equipe "{{selectedEquipe.nom_club}}" pour l'epreuve
+          {{selectedEpreuve.intitule}}: </h4>
       </div>
       <div ng-repeat="equipe in selectedEquipeNageurs" class="row col-lg-10" style="margin:auto !important;">
 
@@ -61,45 +62,58 @@
 
 
           <thead>
-            <tr>
-              <th class="center">Nom</th>
-              <th class="center">Prenom</th>
-              <!-- En fonction du role, la/les colonnes de notes change-->
-              <th ng-if="$storage.role_id >= 10" class="center">Note
-                <span ng-if="$storage.role_id==11"> execution</span>
-                <span ng-if="$storage.role_id==12"> artistique</span>
-                <span ng-if="$storage.role_id==13"> difficulté</span>
-              </th>
+          <tr>
+            <th class="center">Nom</th>
+            <th class="center">Prenom</th>
+            <!-- En fonction du role, la/les colonnes de notes change-->
+            <th ng-if="$storage.role_id >= 10" class="center">Note
+              <span ng-if="$storage.role_id==11"> execution</span>
+              <span ng-if="$storage.role_id==12"> artistique</span>
+              <span ng-if="$storage.role_id==13"> difficulté</span>
+            </th>
 
 
-              <th class="center" ng-if="$storage.role_id == 2"> Element 1</th>
-              <th class="center" ng-if="$storage.role_id == 2"> Element 2</th>
-              <th class="center" ng-if="$storage.role_id == 2"> Element 3</th>
-              <th class="center" ng-if="$storage.role_id == 2"> Element 4</th>
-              <th class="center" ng-if="$storage.role_id == 2"> Element 5</th>
+            <th class="center" ng-if="$storage.role_id == 2"> Element 1</th>
+            <th class="center" ng-if="$storage.role_id == 2"> Element 2</th>
+            <th class="center" ng-if="$storage.role_id == 2"> Element 3</th>
+            <th class="center" ng-if="$storage.role_id == 2"> Element 4</th>
+            <th class="center" ng-if="$storage.role_id == 2"> Element 5</th>
 
-            </tr>
+          </tr>
           </thead>
 
 
           <tbody>
-            <tr ng-repeat="nageur in equipe.nageurs">
-              <td>{{nageur.nom}}</td>
-              <td>{{nageur.prenom}}</td>
-              <!-- En fonction du role, la/les colonnes de notes change-->
-              <td ng-if="$storage.role_id >= 10" width="50%">
-                <input ng-if="$storage.role_id == 11" id="noteExecution" class="form-control" required min="0" max="10" step="0.1" type="number" ng-model="notes.execution[nageur.user_id]">
-                <input ng-if="$storage.role_id == 12" id="noteArtistique" class="form-control" required min="0" max="10" step="0.1" type="number" ng-model="notes.artistique[nageur.user_id]">
-                <input ng-if="$storage.role_id == 13" id="noteDifficulte" class="form-control" required min="0" max="10" step="0.1" type="number" ng-model="notes.difficulte[nageur.user_id]">
-              </td>
+          <tr ng-repeat="nageur in equipe.nageurs">
+            <td>{{nageur.nom}}</td>
+            <td>{{nageur.prenom}}</td>
+            <!-- En fonction du role, la/les colonnes de notes change-->
+            <td ng-if="$storage.role_id >= 10" width="50%">
+              <input ng-if="$storage.role_id == 11" id="noteExecution" class="form-control" required min="0" max="10"
+                     step="0.1" type="number" ng-model="notes.execution[nageur.user_id]">
+              <input ng-if="$storage.role_id == 12" id="noteArtistique" class="form-control" required min="0" max="10"
+                     step="0.1" type="number" ng-model="notes.artistique[nageur.user_id]">
+              <input ng-if="$storage.role_id == 13" id="noteDifficulte" class="form-control" required min="0" max="10"
+                     step="0.1" type="number" ng-model="notes.difficulte[nageur.user_id]">
+            </td>
 
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement1" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.un[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement2" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.deux[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement3" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.trois[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement4" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.quatre[nageur.user_id]"> </td>
-              <td ng-if="$storage.role_id == 2"> <input id="noteElement5" class="form-control" type="number" required min="0" max="10" step="0.1" ng-model="notes.elements.cinq[nageur.user_id]"> </td>
+            <td ng-if="$storage.role_id == 2"><input id="noteElement1" class="form-control" type="number" required
+                                                     min="0" max="10" step="0.1"
+                                                     ng-model="notes.elements.un[nageur.user_id]"></td>
+            <td ng-if="$storage.role_id == 2"><input id="noteElement2" class="form-control" type="number" required
+                                                     min="0" max="10" step="0.1"
+                                                     ng-model="notes.elements.deux[nageur.user_id]"></td>
+            <td ng-if="$storage.role_id == 2"><input id="noteElement3" class="form-control" type="number" required
+                                                     min="0" max="10" step="0.1"
+                                                     ng-model="notes.elements.trois[nageur.user_id]"></td>
+            <td ng-if="$storage.role_id == 2"><input id="noteElement4" class="form-control" type="number" required
+                                                     min="0" max="10" step="0.1"
+                                                     ng-model="notes.elements.quatre[nageur.user_id]"></td>
+            <td ng-if="$storage.role_id == 2"><input id="noteElement5" class="form-control" type="number" required
+                                                     min="0" max="10" step="0.1"
+                                                     ng-model="notes.elements.cinq[nageur.user_id]"></td>
 
-            </tr>
+          </tr>
           </tbody>
 
         </table>
