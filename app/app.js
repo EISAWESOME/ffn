@@ -4,6 +4,7 @@
 var app = angular.module('myApp', [
   'ngRoute',
   'ngStorage',
+  'ngToast',
   'ui.bootstrap',
   'cp.ngConfirm',
   'myApp.login',
