@@ -269,8 +269,10 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           var noteAEnvoyer = {};
 
           var manqueUnJoueur = function(note){
+            /*
             console.log(note);
             console.log($scope.selectedEquipeNageurs[0].nageurs);
+            */
             if(Object.keys(note).length == Object.keys($scope.selectedEquipeNageurs[0].nageurs).length){
               return false;
             } else {
@@ -307,7 +309,12 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
               var emptyElement = Enumerable.from($scope.notes.elements).firstOrDefault(function (element) {
                 return !element.value;
               });
-              if (!emptyElement) {
+              var manqueNoteJoueur = Enumerable.from($scope.notes.elements).firstOrDefault(function (element) {
+                console.log(element);
+                console.log($scope.selectedEquipeNageurs);
+                return Object.keys(element.value ? element.value : 0).length != Object.keys($scope.selectedEquipeNageurs[0].nageurs).length;
+              });
+              if (!emptyElement && !manqueNoteJoueur) {
                 noteAEnvoyer = $scope.notes.elements;
               }
               break;
