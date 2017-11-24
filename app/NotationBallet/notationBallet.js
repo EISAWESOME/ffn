@@ -14,10 +14,15 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
       function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm) {
         $scope.init = function () {
 
+          console.log($rootScope.$storage);
+
+          /*
+
           $scope.selectedEpreuve = undefined;
 
           $scope.selectedEquipe = undefined;
           $scope.selectedEquipeNageurs = undefined;
+          */
 
           $scope.notes = {
             execution: undefined,
@@ -73,64 +78,13 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
             }
           ];
 
-          //On RaZ au cas où
-          $scope.resetEpreuve();
-          $scope.resetEquipe();
 
-        };
-
-        $scope.resetEpreuve = function () {
-
-          $scope.selectedEquipe = undefined;
-          $scope.selectedEpreuve = undefined;
-          $scope.notes = {
-            execution: undefined,
-            artistique: undefined,
-            difficulte: undefined,
-            elements: {
-              un: undefined,
-              deux: undefined,
-              trois: undefined,
-              quatre: undefined,
-              cinq: undefined
-            }
-          };
-
-        };
-
-        $scope.resetEquipe = function () {
-
-          $scope.selectedEquipe = undefined;
-          $scope.notes = {
-            execution: undefined,
-            artistique: undefined,
-            difficulte: undefined,
-            elements: {
-              un: undefined,
-              deux: undefined,
-              trois: undefined,
-              quatre: undefined,
-              cinq: undefined
-            }
-          };
-
-        };
-
-        $scope.selectEpreuve = function (epreuve) {
-
-          $scope.selectedEpreuve = epreuve;
-          $scope.epreuveEquipes = $scope.getEquipes(epreuve.nbNageur);
-          // Il faut recuperer les equipes qui participe a cette epreuve, ainsi que le nom de leur club
-
-        };
-
-        $scope.selectEquipe = function (idEpreuve, equipe) {
-          $scope.getNageursAsync(idEpreuve, equipe.id).then(function (nageurs) {
+          $scope.getNageursAsync($rootScope.$storage.selectedEpreuve.id, $rootScope.$storage.selectedEquipe.id).then(function (nageurs) {
             $scope.selectedEquipeNageurs = nageurs;
-            $scope.selectedEquipe = equipe;
           });
 
         };
+
 
         $scope.getEquipes = function (nbNageur) {
           console.log("On appelle l'API getEquipesByEpreuves! C'est pas en dur du tout");

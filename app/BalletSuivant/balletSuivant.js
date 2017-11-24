@@ -10,8 +10,8 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
   }])
 
   .controller('balletSuivantCtrl',
-    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window',
-      function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window) {
+    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window', 'ngToast',
+      function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window, ngToast) {
         $scope.init = function () {
 
           $scope.selectedEtape = undefined;
@@ -119,7 +119,9 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
         };
 
         $scope.submitNext = function () {
+
           //Demande confirmation
+
 
           $ngConfirm({
             title: 'Validez votre choix',
@@ -133,16 +135,17 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
                   //Stock dans le ballet suivant dans le storage
 
-                  $scope.$storage.selectedEtape = $scope.selectedEtape;
-                  $scope.$storage.selectedEpreuve = $scope.selectedEpreuve;
-                  $scope.$storage.selectedEquipe = $scope.selectedEquipe;
-                  $scope.$storage.selectedTypeBallet = $scope.selectedTypeBallet;
+                  $rootScope.$storage.selectedEtape = $scope.selectedEtape;
+                  $rootScope.$storage.selectedEpreuve = $scope.selectedEpreuve;
+                  $rootScope.$storage.selectedEquipe = $scope.selectedEquipe;
+                  $rootScope.$storage.selectedTypeBallet = $scope.selectedTypeBallet;
 
                   console.log("Stockage des infos du prochain ballet !");
 
                   //Redirige vers la page d'accueil
 
                   $window.location.href = '#!/';
+
                 }
               },
               cancel: {
@@ -154,8 +157,6 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
               }
             }
           });
-
-
         };
 
 

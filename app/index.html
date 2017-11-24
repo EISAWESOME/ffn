@@ -104,7 +104,6 @@ __█░░░░░░░░░█████░░░████░░██
 
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
     <ul class="navbar-nav">
       <li class="nav-item" ng-repeat="page in $root.allPages" ng-if="page.roles.indexOf($storage.role_id) !=-1">
         <a class="nav-link" href="{{page.url}}"> {{page.nom}}</a>
@@ -119,7 +118,14 @@ __█░░░░░░░░░█████░░░████░░██
 <![endif]-->
 
 <div class="view-container">
-  <div class="right-banner"></div>
+  <div class="right-banner">
+    <div class="debugBox">
+      <button ng-click="$root.$storage.role_id = 0; $root.$storage.role_name = 'admin'"> admin </button>
+      <button ng-click="$root.$storage.role_id = 11; $root.$storage.role_name = 'juge exec'"> juge exec </button>
+      <button ng-click="$root.$storage.role_id = 2; $root.$storage.role_name = 'juge element'"> juge element </button>
+      <button ng-click="$root.$storage.role_id = 3; $root.$storage.role_name = 'juge arbitre'"> juge arbitre </button>
+    </div>
+  </div>
   <div ng-view class="view-div"></div>
   <div class="left-banner"></div>
 </div>
