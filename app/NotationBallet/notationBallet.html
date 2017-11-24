@@ -81,8 +81,17 @@
   </div>
 
 
-  <!-- Au clic , on affiches les différentes étapes de la competitions -->
-
+  <div
+    ng-if="($storage.role_id == 2 && $storage.selectedTypeBallet == 'Libre')">
+    C'est un ballet libre et t'es juge element ! T'as rien a noté
 
   </div>
+
+  <div
+    ng-if="!$storage.selectedEpreuve ||
+          !$storage.selectedEquipe ||
+          !$storage.selectedTypeBallet">
+    Veuillez attendre que le ballet suivant soit selectionné
+  </div>
+
 </section>

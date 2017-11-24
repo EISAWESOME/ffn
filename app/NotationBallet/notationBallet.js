@@ -14,15 +14,11 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
       function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm) {
         $scope.init = function () {
 
-          console.log($rootScope.$storage);
-
-          /*
-
-          $scope.selectedEpreuve = undefined;
-
-          $scope.selectedEquipe = undefined;
-          $scope.selectedEquipeNageurs = undefined;
-          */
+          //Redirige l'utilisateur si il n'a pas le droit d'etre sur cette page
+          //Condition a changer
+          if(!$rootScope.$storage.role_id){
+            $scope.redirectWrongPath();
+          }
 
           $scope.notes = {
             execution: undefined,
@@ -272,15 +268,40 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
 
           var noteAEnvoyer = {};
 
+          var manqueUnJoueur = function(note){
+            console.log(note);
+            console.log($scope.selectedEquipeNageurs[0].nageurs);
+            if(Object.keys(note).length == Object.keys($scope.selectedEquipeNageurs[0].nageurs).length){
+              return false;
+            } else {
+              return true;
+            }
+          };
+
           switch ($scope.$storage.role_id) {
             case 11:
-              noteAEnvoyer = $scope.notes.execution;
+              var emptyExecution = Enumerable.from($scope.notes.execution).firstOrDefault(function (element) {
+                return !element.value;
+              });
+              if (!emptyExecution && !manqueUnJoueur($scope.notes.execution)) {
+                noteAEnvoyer = $scope.notes.execution;
+              }
               break;
             case 12:
-              noteAEnvoyer = $scope.notes.artistique;
+              var emptyArtistique = Enumerable.from($scope.notes.artistique).firstOrDefault(function (element) {
+                return !element.value;
+              });
+              if (!emptyArtistique && !manqueUnJoueur($scope.notes.artistique)) {
+                noteAEnvoyer = $scope.notes.artistique;
+              }
               break;
             case 13:
-              noteAEnvoyer = $scope.notes.difficulte;
+              var emptyDifficulte = Enumerable.from($scope.notes.difficulte).firstOrDefault(function (element) {
+                return !element.value;
+              });
+              if (!emptyDifficulte && !manqueUnJoueur($scope.notes.difficulte)) {
+                noteAEnvoyer = $scope.notes.difficulte;
+              }
               break;
             case 2:
               var emptyElement = Enumerable.from($scope.notes.elements).firstOrDefault(function (element) {
@@ -314,9 +335,6 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                     // On recupere ensuite l'ID du ballet
                     // Puis on crée une entrée dans la table NoteParBalletParJuge
 
-                    console.log('Epreuve id : ' + $scope.selectedEpreuve.id);
-                    console.log('Equipe id : ' + $scope.selectedEquipe.id);
-
                     console.log($scope.notes);
                     console.log(noteAEnvoyer);
 
@@ -338,6 +356,10 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           }
 
 
+        };
+
+        $scope.redirectWrongPath = function(){
+          alert('azaz');
         }
 
 
