@@ -11,6 +11,7 @@ var app = angular.module('myApp', [
   'myApp.home',
   'myApp.notationBallet',
   'myApp.balletSuivant',
+  'myApp.validBallet',
   'myApp.version'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
@@ -22,17 +23,51 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
 
   //Info de login, en dur car pas d'API
   $rootScope.$storage = $localStorage;
+  console.log($rootScope.$storage);
   $rootScope.$storage.ndc = "csimonin";
   $rootScope.$storage.pass = "1234";
   $rootScope.$storage.role_id = 11;
   $rootScope.$storage.user_id = 1;
   $rootScope.$storage.role_name = "Juge Execution";
 
-  // Info de l'etape actuelle en dur
-  // doit etre set par le juge arbitre dans un ecran
-  $rootScope.$storage.currentEtapeId = 10;
-  $rootScope.$storage.currentEpreuveId = 1;
-  $rootScope.$storage.currentEquipeId = 900;
+  //Tableau qui contient l'odre de passage des ballets.
+  //Les juge accède l'index 0 du tableau.
+  //Quand un ballet est validé par le juge arbitre, on splice l'index 0
+
+  if(!$rootScope.$storage.ordrePassage) {
+    $rootScope.$storage.ordrePassage = [];
+  } else {
+    //Set des notes pour exemple
+    //Cas d'un ballet imposé
+    $rootScope.$storage.ordrePassage[0].notes = {
+      artistique : 7,
+      difficulte : undefined,
+      execution : 6,
+      elements : {
+        un : 1,
+        deux: 2,
+        trois : 3,
+        quatre : 4,
+        cinq : 5
+      }
+    };
+
+    //Cas d'un ballet libre
+    /*
+    $rootScope.$storage.ordrePassage[0].notes = {
+      artistique : 6,
+      difficulte : 5,
+      execution : 3,
+      elements : {
+        un : undefined,
+        deux: undefined,
+        trois : undefined,
+        quatre : undefined,
+        cinq : undefined
+      }
+    }
+    */
+  }
 
 
   // Roles :
@@ -71,7 +106,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     {
       "nom": "Validation d'un ballet",
       "icon": "img/valid.png",
-      "url": "#!/",
+      "url": "#!/ValidBallet",
       "roles": [0, 3]
     },
 

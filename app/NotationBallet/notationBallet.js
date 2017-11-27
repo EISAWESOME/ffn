@@ -75,7 +75,15 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           ];
 
 
+          /*
           $scope.getNageursAsync($rootScope.$storage.selectedEpreuve.id, $rootScope.$storage.selectedEquipe.id).then(function (nageurs) {
+            $scope.selectedEquipeNageurs = nageurs;
+          });
+          */
+
+          $scope.getNageursAsync(
+            $rootScope.$storage.ordrePassage[0].epreuve.id,
+            $rootScope.$storage.ordrePassage[0].equipe.id).then(function (nageurs) {
             $scope.selectedEquipeNageurs = nageurs;
           });
 
@@ -85,14 +93,13 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         $scope.getEquipes = function (nbNageur) {
           console.log("On appelle l'API getEquipesByEpreuves! C'est pas en dur du tout");
 
-          var equipes = $scope.allEquipes.filter(function (x) {
+          return $scope.allEquipes.filter(function (x) {
             return x.nbNageur == nbNageur;
           });
-
-          return equipes;
         };
 
         $scope.getNageursAsync = function (idEpreuve, idEquipe) {
+          console.log($rootScope.$storage);
           var nageurDefer = $q.defer();
 
           // On recupere les equipe en dur
@@ -280,6 +287,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
             }
           };
 
+          //En fonction du role du juge, on recupere les notes adapté
           switch ($scope.$storage.role_id) {
             case 11:
               var emptyExecution = Enumerable.from($scope.notes.execution).firstOrDefault(function (element) {
@@ -310,9 +318,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 return !element.value;
               });
               var manqueNoteJoueur = Enumerable.from($scope.notes.elements).firstOrDefault(function (element) {
-                console.log(element);
-                console.log($scope.selectedEquipeNageurs);
-                return Object.keys(element.value ? element.value : 0).length != Object.keys($scope.selectedEquipeNageurs[0].nageurs).length;
+                return Object.keys(element.value ? element.value : 0).length !== Object.keys($scope.selectedEquipeNageurs[0].nageurs).length;
               });
               if (!emptyElement && !manqueNoteJoueur) {
                 noteAEnvoyer = $scope.notes.elements;
@@ -342,6 +348,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                     // On recupere ensuite l'ID du ballet
                     // Puis on crée une entrée dans la table NoteParBalletParJuge
 
+
+                    $rootScope.$storage.ordrePassage[0].notes = $scope.notes;
                     console.log($scope.notes);
                     console.log(noteAEnvoyer);
 
@@ -366,7 +374,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         };
 
         $scope.redirectWrongPath = function(){
-          alert('azaz');
+          alert('Interdit !');
         }
 
 

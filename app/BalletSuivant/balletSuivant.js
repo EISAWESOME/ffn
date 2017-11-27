@@ -14,6 +14,11 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
       function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window, ngToast) {
         $scope.init = function () {
 
+          // Stocker les etape selectionné dans un tableau ?
+          // Pour etablir un ordre de passage ?
+
+          //Creer un toast dès qu'on ajoute un ballet à l'ordrede passage ?
+
           $scope.selectedEtape = undefined;
 
           $scope.selectedEpreuve = undefined;
@@ -64,6 +69,11 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
         };
 
+
+        /**
+         * Ajoute une etape à l'odre de passage
+         * @param etape : l objet etape à ajouter
+         */
         $scope.selectEtape = function (etape) {
 
           console.log(etape);
@@ -76,6 +86,10 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
         };
 
+        /**
+         * Ajoute une epreuveà l'ordre de passage
+         * @param epreuve : l objet epreuve à ajouter
+         */
         $scope.selectEpreuve = function (epreuve) {
 
           console.log(epreuve);
@@ -87,25 +101,32 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
         };
 
+        /**
+         * Ajoute une equipe à l'odre de passage
+         * @param idEpreuve : l identifiant de l'epreuve à laquelle l'equipe est rattaché ( pour l api)
+         * @param equipe : l objet equipe à ajouter
+         */
         $scope.selectEquipe = function (idEpreuve, equipe) {
           $scope.selectedTypeBallet = undefined;
           $scope.selectedEquipe = equipe;
 
         };
 
+        /**
+         * Précise le type de ballet plannifié
+         * @param type : "Libre" ou "Impose"
+         */
         $scope.selectTypeBallet = function (type) {
           $scope.selectedTypeBallet = type;
           console.log($scope.selectedTypeBallet)
 
         };
 
-        $scope.getLength = function (obj) {
-
-          return Object.keys(obj).length;
-
-        };
-
-
+        /**
+         *
+         * @param nbNageur : le nombre de nageur de l'equipe recherché
+         * @returns {Array.<T>} : retourne l'equipe contenant le nombre de nageur précisé
+         */
         $scope.getEquipes = function (nbNageur) {
           console.log("On appelle l'API getEquipesByEpreuves! C'est pas en dur du tout");
 
@@ -118,6 +139,22 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
           return equipes;
         };
 
+
+        /**
+         * Recupere le nombre d'attribut
+         * @param obj : objet a compter
+         * @returns {Number} : le nombre d'attribut
+         */
+        $scope.getLength = function (obj) {
+
+          return Object.keys(obj).length;
+
+        };
+
+
+        /**
+         * Enregistre les item selectionné dans l'ordre de passage
+         */
         $scope.submitNext = function () {
 
           //Demande confirmation
@@ -135,10 +172,21 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
                   //Stock dans le ballet suivant dans le storage
 
+                  $rootScope.$storage.ordrePassage.push({
+                    etape : $scope.selectedEtape,
+                    epreuve : $scope.selectedEpreuve,
+                    equipe : $scope.selectedEquipe,
+                    type : $scope.selectedTypeBallet
+                    });
+
+                  /*
+
                   $rootScope.$storage.selectedEtape = $scope.selectedEtape;
                   $rootScope.$storage.selectedEpreuve = $scope.selectedEpreuve;
                   $rootScope.$storage.selectedEquipe = $scope.selectedEquipe;
                   $rootScope.$storage.selectedTypeBallet = $scope.selectedTypeBallet;
+
+                  */
 
                   console.log("Stockage des infos du prochain ballet !");
 

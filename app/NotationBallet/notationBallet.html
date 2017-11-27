@@ -3,13 +3,15 @@
 
 
   <div id="notationEpreuve"
-       ng-if="$storage.selectedEpreuve &&
-          $storage.selectedEquipe &&
-          $storage.selectedTypeBallet &&
-          (($storage.role_id == 2 && $storage.selectedTypeBallet == 'Impose') || ($storage.role_id > 10 && $storage.selectedTypeBallet == 'Libre'))">
+       ng-if="$storage.ordrePassage[0].epreuve &&
+          $storage.ordrePassage[0].equipe &&
+          $storage.ordrePassage[0].type &&
+          (($storage.role_id == 2 && $storage.ordrePassage[0].type == 'Impose')  ||
+           ($storage.role_id == 13 && $storage.ordrePassage[0].type == 'Libre')) ||
+           ($storage.role_id > 10)">
     <div class="row">
-      <h4 class="center">Notation de l'equipe "{{$storage.selectedEquipe.nom_club}}" pour l'epreuve
-        {{$storage.selectedEpreuve.intitule}}: </h4>
+      <h4 class="center">Notation de l'equipe "{{$storage.ordrePassage[0].equipe.nom_club}}" pour l'epreuve
+        {{$storage.ordrePassage[0].epreuve.intitule}}: </h4>
     </div>
 
 
@@ -88,9 +90,15 @@
   </div>
 
   <div
-    ng-if="!$storage.selectedEpreuve ||
-          !$storage.selectedEquipe ||
-          !$storage.selectedTypeBallet">
+    ng-if="($storage.role_id == 13 && $storage.selectedTypeBallet == 'Impose')">
+    C'est un ballet Impose et t'es juge difficulte ! T'as rien a noté
+
+  </div>
+
+  <div
+    ng-if="!$storage.ordrePassage[0].epreuve ||
+          !$storage.ordrePassage[0].equipe ||
+          !$storage.ordrePassage[0].type">
     Veuillez attendre que le ballet suivant soit selectionné
   </div>
 
