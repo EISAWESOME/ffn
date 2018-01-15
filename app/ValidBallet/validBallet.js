@@ -108,6 +108,42 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
           else {
             return false;
           }
+        };
+
+
+        $scope.submit = function(){
+          $scope.balletValide.score = 0;
+          $scope.balletValide.notes = {};
+          //Submit toute les notes du ballet en cours + la pénalité
+          Enumerable.from($scope.balletEnCours.notes).forEach(function(note){
+
+            //Si la note est composé de plusieurs note, on fait la moyenne
+            if(Array.isArray(note.value)){
+              note.value = $scope.getAverageNote(note.value);
+            }
+
+            //Si la note est non nul, on la push dans l'objet ballet validé
+            if(note.value) {
+              $scope.balletValide.notes[note.key] = note.value;
+
+              if(!isNaN(note.value)){
+                $scope.balletValide.score += note.value;
+              } else {
+                var sommeElements = 0;
+                Enumerable.from(note.value).forEach(function(element){
+                  sommeElements += element.value;
+                });
+                var moyenneElements = sommeElements / Object.keys(note.value).length;
+                $scope.balletValide.score += moyenneElements;
+              }
+            }
+          });
+
+          $scope.balletValide.score = $scope.balletValide.score / Object.keys($scope.balletValide.notes).length + $scope.balletValide.penalite;
+
+          //Appelle l'API pour les stocker dans la BDD
+          console.log("submit", $scope.balletValide);
+
         }
 
 

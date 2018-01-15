@@ -18,6 +18,16 @@ section {
   margin-left: 5%;
 }
 
+.flexColumnContainer {
+  display : flex;
+  flex-direction: column;
+}
+.flexRowContainer {
+  display : flex;
+  flex-direction: row;
+}
+
+
 .right-banner {
   background-color: #9d223c;
   height: 100%;

@@ -36,8 +36,6 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
   //Quand un ballet est validé par le juge arbitre, on splice l'index 0
 
   //Faire un set timeout qui pull l'ordre de passage toute les 10s
-
-
   if(!$rootScope.$storage.ordrePassage) {
     $rootScope.$storage.ordrePassage = [];
   } else {
