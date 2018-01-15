@@ -22,6 +22,7 @@ var app = angular.module('myApp', [
 app.run(function ($localStorage, $sessionStorage, $rootScope) {
 
   //Info de login, en dur car pas d'API
+  //$localStorage.$reset();
   $rootScope.$storage = $localStorage;
   console.log($rootScope.$storage);
   $rootScope.$storage.ndc = "csimonin";
@@ -34,39 +35,47 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
   //Les juge accède l'index 0 du tableau.
   //Quand un ballet est validé par le juge arbitre, on splice l'index 0
 
+  //Faire un set timeout qui pull l'ordre de passage toute les 10s
+
+
   if(!$rootScope.$storage.ordrePassage) {
     $rootScope.$storage.ordrePassage = [];
   } else {
-    //Set des notes pour exemple
-    //Cas d'un ballet imposé
-    $rootScope.$storage.ordrePassage[0].notes = {
-      artistique : 7,
-      difficulte : undefined,
-      execution : 6,
-      elements : {
-        un : 1,
-        deux: 2,
-        trois : 3,
-        quatre : 4,
-        cinq : 5
-      }
-    };
+    if($rootScope.$storage.ordrePassage[0]) {
+      //$rootScope.$storage.ordrePassage[0] = {};
+      console.log($rootScope.$storage);
+      //Set des notes pour exemple
+      //Cas d'un ballet imposé
+      $rootScope.$storage.ordrePassage[0].notes = {
+        artistique : 7,
+        execution : [6,15],
+        difficulte : undefined,
+        elements : {
+          un : 1,
+          deux: 2,
+          trois : 3,
+          quatre : 4,
+          cinq : 5
+        }
+      };
 
-    //Cas d'un ballet libre
-    /*
-    $rootScope.$storage.ordrePassage[0].notes = {
-      artistique : 6,
-      difficulte : 5,
-      execution : 3,
-      elements : {
-        un : undefined,
-        deux: undefined,
-        trois : undefined,
-        quatre : undefined,
-        cinq : undefined
+      //Cas d'un ballet libre
+      /*
+      $rootScope.$storage.ordrePassage[0].notes = {
+        artistique : 6,
+        difficulte : 5,
+        execution : 3,
+        elements : {
+          un : undefined,
+          deux: undefined,
+          trois : undefined,
+          quatre : undefined,
+          cinq : undefined
+        }
       }
+      */
     }
-    */
+
   }
 
 

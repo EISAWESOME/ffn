@@ -290,26 +290,18 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           //En fonction du role du juge, on recupere les notes adapté
           switch ($scope.$storage.role_id) {
             case 11:
-              var emptyExecution = Enumerable.from($scope.notes.execution).firstOrDefault(function (element) {
-                return !element.value;
-              });
-              if (!emptyExecution && !manqueUnJoueur($scope.notes.execution)) {
+              if ($scope.notes.execution) {
                 noteAEnvoyer = $scope.notes.execution;
               }
               break;
             case 12:
-              var emptyArtistique = Enumerable.from($scope.notes.artistique).firstOrDefault(function (element) {
-                return !element.value;
-              });
-              if (!emptyArtistique && !manqueUnJoueur($scope.notes.artistique)) {
+
+              if ($scope.notes.artistique) {
                 noteAEnvoyer = $scope.notes.artistique;
               }
               break;
             case 13:
-              var emptyDifficulte = Enumerable.from($scope.notes.difficulte).firstOrDefault(function (element) {
-                return !element.value;
-              });
-              if (!emptyDifficulte && !manqueUnJoueur($scope.notes.difficulte)) {
+              if ($scope.notes.difficulte) {
                 noteAEnvoyer = $scope.notes.difficulte;
               }
               break;
@@ -320,10 +312,10 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
               var manqueNoteJoueur = Enumerable.from($scope.notes.elements).firstOrDefault(function (element) {
                 return Object.keys(element.value ? element.value : 0).length !== Object.keys($scope.selectedEquipeNageurs[0].nageurs).length;
               });
-              if (!emptyElement && !manqueNoteJoueur) {
+              if (!emptyElement) {
                 noteAEnvoyer = $scope.notes.elements;
               }
-              break;
+              break;z
             default:
               // ???
               break;
@@ -331,7 +323,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
 
           console.log(noteAEnvoyer);
 
-          if (!jQuery.isEmptyObject(noteAEnvoyer)) {
+          if (noteAEnvoyer) {
 
             console.log(noteAEnvoyer);
             $ngConfirm({
@@ -349,7 +341,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                     // Puis on crée une entrée dans la table NoteParBalletParJuge
 
 
-                    $rootScope.$storage.ordrePassage[0].notes = $scope.notes;
+                    //$rootScope.$storage.ordrePassage[0].notes = $scope.notes;
+                    //Switch avec tout les role, pour attribuer la note a la bonne propriété de l'objet
                     console.log($scope.notes);
                     console.log(noteAEnvoyer);
 

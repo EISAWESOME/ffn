@@ -1,3 +1,61 @@
 <section ng-init="init()">
-  <p> Valid Ballet</p>
+  <div ng-if="!allNotes">
+      Les juges n'ont pas finit leurs notations
+  </div>
+
+  <div ng-if="allNotes">
+      Toutes les notes pour le ballet en cours ! Incroyable
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Notes</th>
+        </tr>
+        <tr ng-repeat="(intitule, notes) in balletEnCours.notes" ng-if="notes">
+          <td> {{intitule}}</td>
+          <td ng-if="!isNoteElement(notes)">
+
+            <input class="form-control"
+                   ng-if="!hasMultipleElements(notes)"
+                   ng-model="balletValide.notes[intitule]"
+                   type="number" min="0" max="100" step="0.5" value="{{notes}}" required>
+
+            <input class="form-control"
+                   ng-if="hasMultipleElements(notes)"
+                   ng-model="balletValide.notes[intitule]"
+                   type="number" min="0" max="100" step="0.5" value="{{getAverageNote(notes)}}" required>
+          </td>
+
+          <td ng-if="isNoteElement(notes)" ng-repeat="(numElem, note) in notes track by $index">
+
+            <input class="form-control"
+                   ng-if="!hasMultipleElements(note)"
+                   ng-model="balletValide.notes[intitule][numElem]"
+                   type="number" min="0" max="100" step="0.5" value="{{note}}" required>
+
+            <input class="form-control"
+                   ng-if="hasMultipleElements(note)"
+                   ng-model="balletValide.notes[intitule][numElem]"
+                   type="number" min="0" max="100" step="0.5" value="{{getAverageNote(note)}}" required>
+          </td>
+
+        </tr>
+      </thead>
+    </table>
+
+
+    <div id="penalite">
+      Pénalité
+      <input class="form-control"
+             ng-model="balletValide.penalite"
+             type="number" min="-2" max="0" step="0.5" value="0" required>
+    </div>
+
+    <button ng-click=""
+            style="width: 100%"
+            class="btn btn-success"> Submit
+    </button>
+
+  </div>
 </section>

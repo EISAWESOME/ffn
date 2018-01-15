@@ -172,6 +172,10 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
 
                   //Stock dans le ballet suivant dans le storage
 
+                  //Crée un ballet
+                  //A stocker dans la BDD en même temps
+                  //Si il y a deja 5 ballet dans la queue, l'API refuse de stocker
+
                   $rootScope.$storage.ordrePassage.push({
                     etape : $scope.selectedEtape,
                     epreuve : $scope.selectedEpreuve,
@@ -179,14 +183,6 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
                     type : $scope.selectedTypeBallet
                     });
 
-                  /*
-
-                  $rootScope.$storage.selectedEtape = $scope.selectedEtape;
-                  $rootScope.$storage.selectedEpreuve = $scope.selectedEpreuve;
-                  $rootScope.$storage.selectedEquipe = $scope.selectedEquipe;
-                  $rootScope.$storage.selectedTypeBallet = $scope.selectedTypeBallet;
-
-                  */
 
                   console.log("Stockage des infos du prochain ballet !");
 
