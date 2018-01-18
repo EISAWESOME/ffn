@@ -107,6 +107,13 @@ angular.module('myApp.login', ['ngRoute', 'ngStorage'])
                 }
                 if($rootScope.$storage.role_id || $rootScope.$storage.role_id == 0){
                     console.log($rootScope.$storage);
+                    $rootScope.allPages[0] =
+                    {
+                        "nom": "Deconnexion",
+                        "icon": "img/logout.png",
+                        "url": "#!/",
+                        "roles": [0, 11, 12, 13, 2, 3, 4, 5]
+                    };
                     $window.location.href = "http://" + $window.location.host + "/app/#!/";
                 }
             }

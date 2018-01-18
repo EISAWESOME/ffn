@@ -10,13 +10,17 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
   }])
 
   .controller('notationBalletCtrl',
-    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm',
-      function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm) {
+    ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window',
+      function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window) {
         $scope.init = function () {
 
           //Redirige l'utilisateur si il n'a pas le droit d'etre sur cette page
           //Condition a changer
-          if(!$rootScope.$storage.role_id){
+          if( !$rootScope.$storage.role_id == 0 ||
+              !$rootScope.$storage.role_id == 11 ||
+              !$rootScope.$storage.role_id == 12 ||
+              !$rootScope.$storage.role_id == 13 ||
+              !$rootScope.$storage.role_id == 2){
             $scope.redirectWrongPath();
           }
 
@@ -370,7 +374,8 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         };
 
         $scope.redirectWrongPath = function(){
-          alert('Interdit !');
+          console.log('404');
+            $window.location.href = "http://" + $window.location.host + "/app/#!/404";
         }
 
 

@@ -12,6 +12,7 @@ var app = angular.module('myApp', [
     'myApp.notationBallet',
     'myApp.balletSuivant',
     'myApp.validBallet',
+    'myApp.404',
     'myApp.version'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
@@ -30,6 +31,16 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     }
 
     console.log($rootScope.$storage);
+
+    $rootScope.logout = function(){
+        delete $rootScope.$storage.ndc;
+        delete $rootScope.$storage.role_name;
+        $rootScope.$storage.role_id = 5;
+        setTimeout(function(){
+            location.reload();
+        },10);
+
+    };
 
     /*
     $rootScope.$storage.ndc = "csimonin";
@@ -137,6 +148,16 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
             "url": "#!/",
             "roles": [0, 11, 12, 13, 2, 3, 4, 5]
         }];
+
+    if($rootScope.$storage.ndc){
+        $rootScope.allPages[0] =
+            {
+                "nom": "Deconnexion",
+                "icon": "img/logout.png",
+                "url": "#!/",
+                "roles": [0, 11, 12, 13, 2, 3, 4, 5]
+            };
+    }
 
 
     // Stock une competition (pour l'instant)
