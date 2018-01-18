@@ -12,6 +12,7 @@ var app = angular.module('myApp', [
     'myApp.notationBallet',
     'myApp.balletSuivant',
     'myApp.validBallet',
+    'myApp.tableauAffichage',
     'myApp.404',
     'myApp.version'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
@@ -26,8 +27,6 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     $rootScope.$storage = $localStorage;
     console.log($rootScope.$storage);
 
-    $rootScope.$storage.tableauAffichage = $rootScope.$storage.tableauAffichage ? $rootScope.$storage.tableauAffichage : [];
-
     $rootScope.$storage.role_id = $rootScope.$storage.role_id ? $rootScope.$storage.role_id : 5;
     /*
     $rootScope.$storage.ndc = "csimonin";
@@ -37,13 +36,13 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     $rootScope.$storage.role_name = "Juge Execution";
     */
 
-    $rootScope.logout = function(){
+    $rootScope.logout = function () {
         delete $rootScope.$storage.ndc;
         delete $rootScope.$storage.role_name;
         $rootScope.$storage.role_id = 5;
-        setTimeout(function(){
+        setTimeout(function () {
             location.reload();
-        },10);
+        }, 10);
 
     };
 
@@ -148,11 +147,11 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
         {
             "nom": "Tableau General",
             "icon": "img/score.png",
-            "url": "#!/",
+            "url": "#!/Scores",
             "roles": [0, 11, 12, 13, 2, 3, 4, 5]
         }];
 
-    if($rootScope.$storage.ndc){
+    if ($rootScope.$storage.ndc) {
         $rootScope.allPages[0] =
             {
                 "nom": "Deconnexion",
@@ -321,5 +320,33 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
                 }
 
         };
+
+    $rootScope.$storage.tableauAffichage = $rootScope.$storage.tableauAffichage ? $rootScope.$storage.tableauAffichage :
+        {
+            Etapes : {
+                Preliminaire : {
+                    Epreuves : {
+                        solo : [],
+                        duo : [],
+                        equipe : []
+                    }
+                },
+                Eliminatoire : {
+                    Epreuves : {
+                        solo : [],
+                        duo : [],
+                        equipe : []
+                    }
+                },
+                Finale : {
+                    Epreuves : {
+                        solo : [],
+                        duo : [],
+                        equipe : []
+                    }
+                },
+            }
+        };
+
 
 });

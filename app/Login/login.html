@@ -1,12 +1,12 @@
 <section ng-init="init()">
   <p>Page de login</p>
   <form name="formLogin" style="width:40%">
-    <label for="ndc"> Ndc :</label>
+    <label for="ndc"> Login :</label>
     <input id="ndc"
            name="ndcInput"
            class="form-control"
            ng-model="model.ndc" required>
-    <label for="mdp"> Mdp :</label>
+    <label for="mdp"> Mot de passe :</label>
     <input type="password"
            id="mdp"
            name="mdpInput"
@@ -16,8 +16,6 @@
     <input type="submit" class="btn btn-success" value="Go!"
             ng-click="submit()"/>
   </form>
-
-
 
 
   <!--  Envoi les credentials a l'API

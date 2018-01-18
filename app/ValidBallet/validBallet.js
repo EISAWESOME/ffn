@@ -10,8 +10,8 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
     }])
 
     .controller('validBalletCtrl',
-        ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window', 'ngToast',
-            function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window, ngToast) {
+        ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window',
+            function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window) {
                 $scope.init = function () {
                     console.log($rootScope.$storage);
 
@@ -119,60 +119,88 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
 
                     //Confimer la validation du ballet
 
-                    console.log($scope.balletValide);
-
-                    $scope.balletValide.score = 0;
-
-                    //Submit toute les notes du ballet en cours + la pénalité
-                    Enumerable.from($scope.balletValide.notes).forEach(function (note) {
-
-                        //Si la note est composé de plusieurs note, on fait la moyenne
-                        if (Array.isArray(note.value)) {
-                            note.value = $scope.getAverageNote(note.value);
-                        }
-
-                        //Si la note est non nul, on la push dans l'objet ballet validé
-                        if (note.value) {
-                            $scope.balletValide.notes[note.key] = note.value;
-
-                            if (!isNaN(note.value)) {
-                                $scope.balletValide.score += note.value;
-                            } else {
-                                var sommeElements = 0;
-                                Enumerable.from(note.value).forEach(function (element) {
-                                    sommeElements += element.value;
-                                });
-                                var moyenneElements = sommeElements / Object.keys(note.value).length;
-                                $scope.balletValide.score += moyenneElements;
-                            }
-                        }
-                    });
-
-                    $scope.balletValide.score = $scope.balletValide.score / Object.keys($scope.balletValide.notes).length + $scope.balletValide.penalite;
-                    //Pousse le ballet validé vers le tableau d'affichage
-                    $rootScope.$storage.tableauAffichage.push($scope.balletValide);
-
-
-
-                    $scope.balletEnCours.isValidated = true;
-                    $scope.balletValide.isValidated = true;
-
-                    //Marque le ballet comme validé pour l'équipe
-                    var matchEquipe = Enumerable.from($rootScope.$storage.allEquipes).firstOrDefault(function(eq){
-                        return eq.id = $scope.balletEnCours.equipe.id;
-                    });
-
-                    if(matchEquipe){
-                        matchEquipe.ballets = {
-                            [$scope.balletEnCours.type] : $scope.balletValide,
-                        }
-                    }
-
-                    //Retire le ballet de l'ordre de passage
-                    $rootScope.$storage.ordrePassage.splice(1,0);
 
 
                     //Rediriger vers la selection du ballet suivant / tableau d'affichage ?
+                    $ngConfirm({
+                        title: 'Valider ce ballet ?',
+                        content: "Confirmer la validation du ballet.",
+                        scope: $scope,
+                        buttons: {
+                            submit: {
+                                text: 'Valider',
+                                btnClass: 'btn-blue',
+                                action: function () {
+                                    console.log($scope.balletValide);
+
+                                    $scope.balletValide.infos ={
+                                        etape : $scope.balletEnCours.etape.intitule,
+                                        epreuve : $scope.balletEnCours.epreuve.intitule,
+                                        equipe : $scope.balletEnCours.equipe.nom_club,
+                                        type : $scope.balletEnCours.type
+                                    } ;
+
+                                    $scope.balletValide.score = 0;
+
+                                    //Submit toute les notes du ballet en cours + la pénalité
+                                    Enumerable.from($scope.balletValide.notes).forEach(function (note) {
+
+                                        //Si la note est composé de plusieurs note, on fait la moyenne
+                                        if (Array.isArray(note.value)) {
+                                            note.value = $scope.getAverageNote(note.value);
+                                        }
+
+                                        //Si la note est non nul, on la push dans l'objet ballet validé
+                                        if (note.value) {
+                                            $scope.balletValide.notes[note.key] = note.value;
+
+                                            if (!isNaN(note.value)) {
+                                                $scope.balletValide.score += note.value;
+                                            } else {
+                                                var sommeElements = 0;
+                                                Enumerable.from(note.value).forEach(function (element) {
+                                                    sommeElements += element.value;
+                                                });
+                                                var moyenneElements = sommeElements / Object.keys(note.value).length;
+                                                $scope.balletValide.score += moyenneElements;
+                                            }
+                                        }
+                                    });
+
+                                    $scope.balletValide.score = $scope.balletValide.score / Object.keys($scope.balletValide.notes).length + $scope.balletValide.penalite;
+                                    //Pousse le ballet validé vers le tableau d'affichage
+                                    $rootScope.$storage.tableauAffichage.Etapes[$scope.balletEnCours.etape.intitule].Epreuves[$scope.balletEnCours.epreuve.intitule].push($scope.balletValide);
+
+
+
+                                    $scope.balletEnCours.isValidated = true;
+                                    $scope.balletValide.isValidated = true;
+
+                                    //Marque le ballet comme validé pour l'équipe
+                                    var matchEquipe = Enumerable.from($rootScope.$storage.allEquipes).firstOrDefault(function(eq){
+                                        return eq.id = $scope.balletEnCours.equipe.id;
+                                    });
+
+                                    if(matchEquipe){
+                                        matchEquipe.ballets = {
+                                            [$scope.balletEnCours.type] : $scope.balletValide,
+                                        }
+                                    }
+
+                                    //Retire le ballet de l'ordre de passage
+                                    $rootScope.$storage.ordrePassage.splice(0,1);
+
+                                    $window.location.href = "http://" + $window.location.host + "/app/#!/";
+                                }
+                            },
+                            cancel: {
+                                text: 'Annuler',
+                                btnClass: 'btn-orange',
+                                action: function (scope, button) {
+                                }
+                            }
+                        }
+                    });
 
 
                     console.log($rootScope.$storage);
