@@ -368,7 +368,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
 
                                         console.log(noteAEnvoyer);
                                         console.log($rootScope.$storage);
-
+                                        $window.location.href = "http://" + $window.location.host + "/app/#!/";
 
                                     }
                                 },

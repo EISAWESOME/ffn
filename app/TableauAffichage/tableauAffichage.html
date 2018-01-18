@@ -11,18 +11,27 @@
                 <h4 data-toggle="collapse" data-target="#{{epreuve}}BalletContainer">{{epreuve}}</h4>
                 <div id="{{epreuve}}BalletContainer" class="collapse">
                     <div ng-repeat="ballet in ballets" style="margin-left:15px">
-                        <h5> {{ballet.infos.equipe}} : <b>{{ballet.score | number : 2}}</b></h5>
+                        <h5> {{ballet.infos.equipe}}</h5>
+                        <h5> Ballet {{ballet.infos.type}} : <b style="font-size:30px">{{ballet.score | number : 2}}</b>
+                        </h5>
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Intitule</th>
+                                <th>Motif</th>
                                 <th>Note</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="( intitule, note) in ballet.notes">
-                                <td>{{intitule}}</td>
-                                <td>{{note}}</td>
+                                <td>Note {{intitule}}</td>
+                                <td ng-if="!isNoteElement(note)" colspan="5">
+
+                                    {{note}}
+
+                                </td>
+                                <td ng-if="isNoteElement(note)">
+                                    <span ng-repeat="noteE in note track by $index"> {{noteE}} </span>
+                                </td>
                             </tr>
 
                             <tr>
@@ -38,5 +47,6 @@
         </div>
 
     </div>
+
 
 </section>

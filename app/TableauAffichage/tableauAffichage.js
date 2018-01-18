@@ -18,7 +18,16 @@ angular.module('myApp.tableauAffichage', ['ngRoute', 'ngStorage'])
                     $scope.affichage = $rootScope.$storage.tableauAffichage;
                     console.log($scope.affichage);
 
-                }
+                };
+
+                $scope.isNoteElement = function (note) {
+                    if (note && typeof note === 'object' && !Array.isArray(note)) {
+                        return true
+                    }
+                    else {
+                        return false;
+                    }
+                };
 
 
             }]);

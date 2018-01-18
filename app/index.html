@@ -130,6 +130,18 @@ __█░░░░░░░░░█████░░░████░░██
   <div class="left-banner"></div>
 </div>
 
+<div class="balletQueue">
+  <span>Ballet suivant : </span>
+  <div style="display:flex; flex-direction: column">
+    <span>Etape : {{$root.$storage.ordrePassage[0].etape.intitule}}</span>
+    <span>Epreuve : {{$root.$storage.ordrePassage[0].epreuve.intitule}}</span>
+    <span>Equipe : {{$root.$storage.ordrePassage[0].equipe.nom_club}} {{$root.$storage.ordrePassage[0].type}}</span>
+
+  </div>
+
+
+</div>
+
 
 <script src=" bower_components/angular-route/angular-route.js"></script>
 <script src=" bower_components/ngstorage/ngStorage.js"></script>

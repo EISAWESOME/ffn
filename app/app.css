@@ -27,6 +27,15 @@ section {
   flex-direction: row;
 }
 
+.balletQueue {
+  background-color: white;
+  width: 200px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+}
+
 
 .right-banner {
   background-color: #9d223c;
