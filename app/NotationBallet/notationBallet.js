@@ -81,11 +81,14 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
           });
           */
 
-          $scope.getNageursAsync(
-            $rootScope.$storage.ordrePassage[0].epreuve.id,
-            $rootScope.$storage.ordrePassage[0].equipe.id).then(function (nageurs) {
-            $scope.selectedEquipeNageurs = nageurs;
-          });
+          if($rootScope.$storage.ordrePassage[0]) {
+              $scope.getNageursAsync(
+                  $rootScope.$storage.ordrePassage[0].epreuve.id,
+                  $rootScope.$storage.ordrePassage[0].equipe.id).then(function (nageurs) {
+                  $scope.selectedEquipeNageurs = nageurs;
+              });
+          }
+
 
         };
 

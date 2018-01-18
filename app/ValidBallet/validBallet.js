@@ -13,6 +13,7 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
     ['$scope', '$localStorage', '$sessionStorage', '$rootScope', '$q', '$ngConfirm', '$window', 'ngToast',
       function ($scope, $localStorage, $sessionStorage, $rootScope, $q, $ngConfirm, $window, ngToast) {
         $scope.init = function () {
+          console.log($rootScope.$storage);
 
           $scope.balletValide = {
             penalite : 0
@@ -40,47 +41,48 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
            Puis on envoi le resultat pour affichage
            */
 
+           if($scope.balletEnCours) {
+               switch($scope.balletEnCours.type){
+                   case "Libre" :
+                       /*Recupere les notes
+                       Difficule
+                       Artistique
+                       execution
+                       */
+                       if($scope.balletEnCours.notes.difficulte
+                           && $scope.balletEnCours.notes.artistique
+                           && $scope.balletEnCours.notes.execution) {
+                           $scope.allNotes = true;
+                       } else {
+                           $scope.allNotes = false;
+                       }
+
+                       break;
+                   case "Impose":
+                       /*Recupere les notes
+                       elements
+                       artistique
+                       execution
+                       */
+                       if(($scope.balletEnCours.notes.elements.un && $scope.balletEnCours.notes.elements.deux && $scope.balletEnCours.notes.elements.trois && $scope.balletEnCours.notes.elements.quatre && $scope.balletEnCours.notes.elements.cinq)
+                           && $scope.balletEnCours.notes.artistique
+                           && $scope.balletEnCours.notes.execution) {
+                           $scope.allNotes = true;
 
 
+                       } else {
+                           $scope.allNotes = false;
 
-           switch($scope.balletEnCours.type){
-             case "Libre" :
-               /*Recupere les notes
-               Difficule
-               Artistique
-               execution
-               */
-               if($scope.balletEnCours.notes.difficulte
-                 && $scope.balletEnCours.notes.artistique
-                 && $scope.balletEnCours.notes.execution) {
-                 $scope.allNotes = true;
-               } else {
-                 $scope.allNotes = false;
+                       }
+
+
+                       break;
+                   default :
+                       break;
                }
-
-               break;
-             case "Impose":
-               /*Recupere les notes
-               elements
-               artistique
-               execution
-               */
-               if(($scope.balletEnCours.notes.elements.un && $scope.balletEnCours.notes.elements.deux && $scope.balletEnCours.notes.elements.trois && $scope.balletEnCours.notes.elements.quatre && $scope.balletEnCours.notes.elements.cinq)
-                 && $scope.balletEnCours.notes.artistique
-                 && $scope.balletEnCours.notes.execution) {
-                 $scope.allNotes = true;
-
-
-               } else {
-                 $scope.allNotes = false;
-
-               }
-
-
-               break;
-             default :
-               break;
            }
+
+
 
         };
 

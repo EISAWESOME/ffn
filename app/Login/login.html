@@ -1,13 +1,23 @@
-<section>
+<section ng-init="init()">
   <p>Page de login</p>
+  <form name="formLogin" style="width:40%">
+    <label for="ndc"> Ndc :</label>
+    <input id="ndc"
+           name="ndcInput"
+           class="form-control"
+           ng-model="model.ndc" required>
+    <label for="mdp"> Mdp :</label>
+    <input type="password"
+           id="mdp"
+           name="mdpInput"
+           class="form-control"
+           ng-model="model.mdp" required>
+
+    <input type="submit" class="btn btn-success" value="Go!"
+            ng-click="submit()"/>
+  </form>
 
 
-  <label for="ndc"> Ndc :</label>
-  <input id="ndc">
-  <label for="mdp"> Mdp :</label>
-  <input type="password" id="mdp">
-
-  <button> Go!</button>
 
 
   <!--  Envoi les credentials a l'API

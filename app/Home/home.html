@@ -1,10 +1,13 @@
 <section>
 
 
-  <div style="display:block">
-    <p>Bonjour {{$storage.ndc}} !</p>
-    <p>Votre mot de passe est {{$storage.pass}}, ne le dite à personne !</p>
-    <p>Vous avez le role : {{$storage.role_name}} </p>
+  <div style="display:block" ng-if="$storage.role_id || $storage.role_id == 0 ">
+    <p ng-if="$storage.ndc">Bonjour {{$storage.ndc}} !</p>
+    <div ng-if="!$storage.ndc && $storage.role_id">
+      <p>Bonjour Invité !</p>
+      <p>Veuillez vous connecter pour accèder aux autres pages</p>
+    </div>
+    <p ng-if="$storage.role_name">Vous avez le role : {{$storage.role_name}} </p>
   </div>
 
   <div style="display:flex">
