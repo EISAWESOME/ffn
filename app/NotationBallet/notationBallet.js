@@ -15,11 +15,10 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
         $scope.init = function () {
 
           //Redirige l'utilisateur si il n'a pas le droit d'etre sur cette page
-          //Condition a changer
-          if( !$rootScope.$storage.role_id == 0 ||
-              !$rootScope.$storage.role_id == 11 ||
-              !$rootScope.$storage.role_id == 12 ||
-              !$rootScope.$storage.role_id == 13 ||
+          if( !$rootScope.$storage.role_id == 0 &&
+              !$rootScope.$storage.role_id == 11 &&
+              !$rootScope.$storage.role_id == 12 &&
+              !$rootScope.$storage.role_id == 13 &&
               !$rootScope.$storage.role_id == 2){
             $scope.redirectWrongPath();
           }
@@ -92,8 +91,6 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                   $scope.selectedEquipeNageurs = nageurs;
               });
           }
-
-
         };
 
 
@@ -322,7 +319,7 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
               if (!emptyElement) {
                 noteAEnvoyer = $scope.notes.elements;
               }
-              break;z
+              break;
             default:
               // ???
               break;
@@ -347,9 +344,29 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                     // On recupere ensuite l'ID du ballet
                     // Puis on crée une entrée dans la table NoteParBalletParJuge
 
+                      if(!$rootScope.$storage.ordrePassage[0].notes) {
+                          $rootScope.$storage.ordrePassage[0].notes = {};
+                      }
 
-                    //$rootScope.$storage.ordrePassage[0].notes = $scope.notes;
-                    //Switch avec tout les role, pour attribuer la note a la bonne propriété de l'objet
+
+                      switch ($scope.$storage.role_id) {
+                          case 11:
+                              $rootScope.$storage.ordrePassage[0].notes.execution = noteAEnvoyer;
+                              break;
+                          case 12:
+                              $rootScope.$storage.ordrePassage[0].notes.artistique = noteAEnvoyer;
+                              break;
+                          case 13:
+                              $rootScope.$storage.ordrePassage[0].notes.difficulte = noteAEnvoyer;
+                              break;
+                          case 2:
+                              $rootScope.$storage.ordrePassage[0].notes.elements = noteAEnvoyer;
+                              break;
+                          default:
+                              // ???
+                              break;
+                      }
+
                     console.log($scope.notes);
                     console.log(noteAEnvoyer);
 
