@@ -149,13 +149,31 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
                     });
 
                     $scope.balletValide.score = $scope.balletValide.score / Object.keys($scope.balletValide.notes).length + $scope.balletValide.penalite;
+                    //Pousse le ballet validé vers le tableau d'affichage
+                    $rootScope.$storage.tableauAffichage.push($scope.balletValide);
 
-                    if (!$scope.balletEnCours.isValidated) {
-                        $rootScope.$storage.tableauAffichage.push($scope.balletValide);
-                        $scope.balletEnCours.isValidated = true;
-                    } else {
-                        $rootScope.$storage.tableauAffichage[$rootScope.$storage.tableauAffichage.length - 1] = $scope.balletValide;
+
+
+                    $scope.balletEnCours.isValidated = true;
+                    $scope.balletValide.isValidated = true;
+
+                    //Marque le ballet comme validé pour l'équipe
+                    var matchEquipe = Enumerable.from($rootScope.$storage.allEquipes).firstOrDefault(function(eq){
+                        return eq.id = $scope.balletEnCours.equipe.id;
+                    });
+
+                    if(matchEquipe){
+                        matchEquipe.ballets = {
+                            [$scope.balletEnCours.type] : $scope.balletValide,
+                        }
                     }
+
+                    //Retire le ballet de l'ordre de passage
+                    $rootScope.$storage.ordrePassage.splice(1,0);
+
+
+                    //Rediriger vers la selection du ballet suivant / tableau d'affichage ?
+
 
                     console.log($rootScope.$storage);
 

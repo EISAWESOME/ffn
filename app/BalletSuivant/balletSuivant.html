@@ -62,17 +62,19 @@
 
       <div class="btn-group typeBallet nextBallet" ng-if="$parent.selectedEquipe">
 
-        <label class="btn btn-primary"
+        <button class="btn btn-primary"
                ng-model="selectedTypeBallet"
                style=" width: 50%"
                ng-click="selectTypeBallet('Libre')"
-               uib-btn-radio="'Libre'">Libre</label>
+               ng-disabled="$parent.selectedEquipe.ballets.Libre.isValidated"
+               uib-btn-radio="'Libre'">Libre</button>
 
-        <label class="btn btn-primary"
+        <button class="btn btn-primary"
                ng-model="selectedTypeBallet"
                style=" width: 50%"
+               ng-disabled="$parent.selectedEquipe.ballets.Impose.isValidated"
                ng-click="selectTypeBallet('Impose')"
-               uib-btn-radio="'Impose'">Imposé</label>
+               uib-btn-radio="'Impose'">Imposé</button>
 
       </div>
 
@@ -84,10 +86,6 @@
             style="width: 100%"
             class="btn btn-success"> Submit
     </button>
-
-
-    <!-- Au clic , on affiches les différentes étapes de la competitions -->
-
 
   </div>
 </section>

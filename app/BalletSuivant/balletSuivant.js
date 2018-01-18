@@ -29,43 +29,9 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
                     $scope.selectedTypeBallet = undefined;
 
                     // Doit etre recuperer via l'api
-                    $scope.allEquipes = [
-                        {
-                            id: 901,
-                            nbNageur: 1,
-                            nom_club: "69 la trik solo"
-                        },
 
-                        {
-                            id: 902,
-                            nbNageur: 2,
-                            nom_club: "69 la trik duo"
-                        },
+                    $scope.allEquipes = $rootScope.$storage.allEquipes;
 
-                        {
-                            id: 903,
-                            nbNageur: 3,
-                            nom_club: "69 la trik equipe"
-                        },
-
-                        {
-                            id: 801,
-                            nbNageur: 1,
-                            nom_club: "Les filous du poitou solo"
-                        },
-
-                        {
-                            id: 802,
-                            nbNageur: 2,
-                            nom_club: "Les filous du poitou duo"
-                        },
-
-                        {
-                            id: 803,
-                            nbNageur: 3,
-                            nom_club: "Les filous du poitou equipe"
-                        }
-                    ];
 
                 };
 

@@ -22,7 +22,6 @@ var app = angular.module('myApp', [
 
 app.run(function ($localStorage, $sessionStorage, $rootScope) {
 
-    //Info de login, en dur car pas d'API
     //$localStorage.$reset();
     $rootScope.$storage = $localStorage;
     console.log($rootScope.$storage);
@@ -55,11 +54,14 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     //Faire un set timeout qui pull l'ordre de passage toute les 10s
 
 
+    $rootScope.$storage.ordrePassage = $rootScope.$storage.ordrePassage ? $rootScope.$storage.ordrePassage : [];
+
+    /*
     if (!$rootScope.$storage.ordrePassage) {
         console.log($rootScope.$storage);
         $rootScope.$storage.ordrePassage = [];
     } else {
-        /*
+
         if ($rootScope.$storage.ordrePassage[0]) {
             if ($rootScope.$storage.ordrePassage[0].type == "Impose") {
                 //Cas d'un ballet imposé
@@ -90,9 +92,10 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
             console.log($rootScope.$storage);
 
         }
-        */
 
-    }
+
+    };
+    */
 
 
     // Roles :
@@ -158,6 +161,45 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
                 "roles": [0, 11, 12, 13, 2, 3, 4, 5]
             };
     }
+
+
+    $rootScope.$storage.allEquipes = [
+        {
+            id: 901,
+            nbNageur: 1,
+            nom_club: "69 la trik solo"
+        },
+
+        {
+            id: 902,
+            nbNageur: 2,
+            nom_club: "69 la trik duo"
+        },
+
+        {
+            id: 903,
+            nbNageur: 3,
+            nom_club: "69 la trik equipe"
+        },
+
+        {
+            id: 801,
+            nbNageur: 1,
+            nom_club: "Les filous du poitou solo"
+        },
+
+        {
+            id: 802,
+            nbNageur: 2,
+            nom_club: "Les filous du poitou duo"
+        },
+
+        {
+            id: 803,
+            nbNageur: 3,
+            nom_club: "Les filous du poitou equipe"
+        }
+    ];
 
 
     // Stock une competition (pour l'instant)
