@@ -15,7 +15,8 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
         $scope.init = function () {
 
           $scope.balletValide = {
-            penalite : 0
+            penalite : 0,
+            notes : {}
           };
 
           // ballet en cours = $storage.ordrePassage[0]
@@ -112,8 +113,11 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
 
 
         $scope.submit = function(){
+          $scope.$evalAsync();
+          console.log($scope.balletValide);
+          /*
           $scope.balletValide.score = 0;
-          $scope.balletValide.notes = {};
+
           //Submit toute les notes du ballet en cours + la pénalité
           Enumerable.from($scope.balletEnCours.notes).forEach(function(note){
 
@@ -142,7 +146,7 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
           $scope.balletValide.score = $scope.balletValide.score / Object.keys($scope.balletValide.notes).length + $scope.balletValide.penalite;
 
           //Appelle l'API pour les stocker dans la BDD
-          console.log("submit", $scope.balletValide);
+          console.log("submit", $scope.balletValide);*/
 
         }
 
