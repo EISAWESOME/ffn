@@ -1,5 +1,5 @@
 ## Projet transverse
-Pour utiliser :
+Pour tester :
 1. Ouvrir un terminal :
 2. cd {PATH_TO_FFN}
 3. npm install
