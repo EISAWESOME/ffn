@@ -242,7 +242,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
                             0:
                                 {
                                     "id": 10,
-                                    "intitule": "Prelim.",
+                                    "intitule": "Preliminaire",
                                     "nbConserve": "5",
                                     "Epreuves":
                                         {
@@ -276,7 +276,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
                             1:
                                 {
                                     "id": 20,
-                                    "intitule": "Elim.",
+                                    "intitule": "Eliminatoire",
                                     "nbConserve": "2",
                                     "Epreuves":
                                         {
@@ -370,7 +370,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
                         duo: [],
                         equipe: []
                     }
-                },
+                }
             }
         };
 

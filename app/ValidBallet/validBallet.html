@@ -2,7 +2,7 @@
   <div ng-if="!allNotes">
     <div class="errorDiv center">
       <md-icon md-svg-icon="img/exclamation.svg" style="width:50%; height: 50%"></md-icon>
-      <div> <h1>Les juges n'ont pas finit leurs notations</h1></div>
+      <div><h1>Les juges n'ont pas fini leurs notations</h1></div>
     </div>
 
   </div>
@@ -13,8 +13,6 @@
       <span>{{balletEnCours.epreuve.intitule}}</span>
       <span>{{balletEnCours.equipe.nom_club}}</span>
       <span>{{balletEnCours.type}}</span>
-
-
     </div>
 
     <table class="table table-striped">
@@ -32,6 +30,7 @@
           <input class="form-control"
                  ng-if="!hasMultipleElements(notes)"
                  ng-model="balletValide.notes[intitule]"
+                 ng-keydown="changeInput($event)"
                  type="number" min="0" max="100" step="0.5" value="{{notes}}" required>
 
           <input class="form-control"
