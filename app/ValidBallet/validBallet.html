@@ -1,6 +1,10 @@
 <section ng-init="init()">
   <div ng-if="!allNotes">
-    Les juges n'ont pas finit leurs notations
+    <div class="errorDiv center">
+      <md-icon md-svg-icon="img/exclamation.svg" style="width:50%; height: 50%"></md-icon>
+      <div> <h1>Les juges n'ont pas finit leurs notations</h1></div>
+    </div>
+
   </div>
 
   <div ng-if="allNotes">

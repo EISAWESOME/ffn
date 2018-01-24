@@ -19,9 +19,9 @@
                   ng-repeat="page in allPages track by $index"
                   ng-if="page.roles.indexOf($storage.role_id) !=-1"
                   ng-style="color[$index]"
-                  ng-click="redirect(page.url)">
+                  ng-click="$root.redirect(page.url)">
 
-      <md-icon md-svg-icon="{{page.icon}}" style="width:60%; height : 60%;"></md-icon>
+      <md-icon md-svg-icon="{{page.icon}}" style="width:60%; height:60%;"></md-icon>
       <md-grid-tile-footer>
         <h3>
           {{page.nom}}

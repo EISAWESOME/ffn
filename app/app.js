@@ -22,7 +22,7 @@ var app = angular.module('myApp', [
     $routeProvider.otherwise({redirectTo: '/Login'});
 }]);
 
-app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast) {
+app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) {
 
     //$localStorage.$reset();
     $rootScope.$storage = $localStorage;
@@ -57,6 +57,19 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast) {
     $rootScope.$on('toast', function(message){
         ngToast.create(message);
     });
+
+    $rootScope.redirect = function (url) {
+        switch (url) {
+            case 'LOGOUT' :
+                $rootScope.logout();
+                break;
+            default :
+                $window.location.href = "http://" + $window.location.host + "/app/" + url;
+                break;
+        }
+        console.log(url);
+
+    };
 
 
     $rootScope.currentOrdre = 0;

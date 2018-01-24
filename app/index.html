@@ -109,7 +109,7 @@
         <ul class="navbar-nav" ng-cloak>
             <li class="nav-item" ng-repeat="page in $root.allPages" ng-if="page.roles.indexOf($storage.role_id) !=-1">
                 <b>
-                    <a class="nav-link" href="{{page.url}}" ng-click="page.nom == 'Deconnexion' && $root.logout()">
+                    <a class="nav-link" href="" ng-click="$root.redirect(page.url)">
                     {{page.nom}}</a>
                 </b>
 

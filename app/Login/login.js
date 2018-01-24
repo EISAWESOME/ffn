@@ -111,7 +111,7 @@ angular.module('myApp.login', ['ngRoute', 'ngStorage'])
                     {
                         "nom": "Deconnexion",
                         "icon": "img/logout.svg",
-                        "url": "#!/",
+                        "url": "LOGOUT",
                         "roles": [0, 11, 12, 13, 2, 3, 4, 5]
                     };
                     $window.location.href = "http://" + $window.location.host + "/app/#!/";

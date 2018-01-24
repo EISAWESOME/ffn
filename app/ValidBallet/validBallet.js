@@ -52,12 +52,17 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
                                 Artistique
                                 execution
                                 */
-                                if ($scope.balletEnCours.notes.difficulte
-                                    && $scope.balletEnCours.notes.artistique
-                                    && $scope.balletEnCours.notes.execution) {
+
+                                if (($scope.balletEnCours.notes.difficulte || $scope.balletEnCours.notes.difficulte == 0)
+                                    && ($scope.balletEnCours.notes.artistique || $scope.balletEnCours.notes.artistique == 0)
+                                    && ($scope.balletEnCours.notes.execution || $scope.balletEnCours.notes.execution ==0)) {
                                     $scope.allNotes = true;
                                 } else {
                                     $scope.allNotes = false;
+
+                                    if(!$scope.balletEnCours.notes.difficulte)
+
+                                    $scope.missingNotesMessage = "";
                                 }
 
                                 break;

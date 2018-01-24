@@ -22,19 +22,6 @@ angular.module('myApp.home', ['ngRoute', 'ngStorage'])
                     {'background-color': '#e2e3e8'},
                     {'background-color': '#ffcaf9'}
                 ];
-
-                $scope.redirect = function (url) {
-                    switch (url) {
-                        case 'LOGOUT' :
-                            $rootScope.logout();
-                            break;
-                        default :
-                            $window.location.href = "http://" + $window.location.host + "/app/" + url;
-                            break;
-                    }
-                    console.log(url);
-
-                };
                 //Rend toute les données de $scope.$storage persistante à travers les sessions
                 // $scope.$storage = $localStorage;
             }]);
