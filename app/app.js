@@ -113,6 +113,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
             }
 
             console.log($rootScope.$storage);
+            location.reload();
 
         }
 
@@ -241,7 +242,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
                             0:
                                 {
                                     "id": 10,
-                                    "intitule": "Preliminaire",
+                                    "intitule": "Prelim.",
                                     "nbConserve": "5",
                                     "Epreuves":
                                         {
@@ -275,7 +276,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
                             1:
                                 {
                                     "id": 20,
-                                    "intitule": "Eliminatoire",
+                                    "intitule": "Elim.",
                                     "nbConserve": "2",
                                     "Epreuves":
                                         {

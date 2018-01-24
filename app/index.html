@@ -100,7 +100,7 @@
         <img src="img/ffn.png" height="55px" width="100px" alt="">
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdown" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            data-target="#navbarNavDropdown" aria-controls="Menu" aria-expanded="false"
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -116,15 +116,17 @@
             </li>
         </ul>
     </div>
-    <div class="buttonDemo" layout="row">
+    <div class="buttonDemo" layout="row" layout-align="center">
 
-        <md-button class="md-mini" aria-label="test" ng-click="$root.toggleTestData()">
-            <md-icon md-svg-src="img/test.svg"></md-icon>
-        </md-button>
 
-        <md-button class="md-mini" aria-label="reset" ng-click="$root.resetStorage()">
-            <md-icon md-svg-src="img/reset.svg"></md-icon>
-        </md-button>
+            <md-button class="md-mini" aria-label="test" ng-click="$root.toggleTestData()">
+                <md-icon md-svg-src="img/test.svg"></md-icon>
+            </md-button>
+
+            <md-button class="md-mini" aria-label="reset" ng-click="$root.resetStorage()">
+                <md-icon md-svg-src="img/reset.svg"></md-icon>
+            </md-button>
+
     </div>
 </nav>
 
@@ -139,10 +141,10 @@
     </md-card>
 </div>
 
-<div class="balletQueueBanner" ng-cloak ng-if="$root.$storage.ordrePassage[$root.currentOrdre]">
+<div class="balletQueueBanner" ng-cloak ng-if="$root.$storage.ordrePassage[$root.currentOrdre]" title="Ballets à venir">
     <md-card>
         <md-content layout="row" layout-wrap>
-            <h4 class="queueBannerItem" flex="10">A venir</h4>
+            <h4 class="queueBannerItem" hide show-gt-md flex="10">A venir</h4>
             <md-button
                     ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre-1]"
                     ng-click="$root.previousOrdre()"

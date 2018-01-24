@@ -47,6 +47,7 @@ form {
 }
 
 .queueBannerItem {
+  word-wrap: break-word;
   text-align: center;
   vertical-align: middle;
   line-height: 40px;
@@ -62,11 +63,20 @@ form {
 }
 
 .view-div {
+  width : 70%;
   margin-top: -5px;
-  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (max-width: 800px) {
+  .view-div {
+    width : 90%;
+  }
+}
+
+
+
 
 .nextBallet {
   width: 100%;
