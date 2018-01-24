@@ -187,9 +187,12 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
                                     });
 
                                     if(matchEquipe){
-                                        matchEquipe.ballets = {
-                                            [$scope.balletEnCours.type] : $scope.balletValide,
+                                        if(!matchEquipe.ballets) {
+                                            matchEquipe.ballets = {};
                                         }
+                                        matchEquipe.ballets[$scope.balletEnCours.type] = $scope.balletValide.isValidated;
+
+                                        console.log($rootScope.$storage.allEquipes);
                                     }
 
                                     //Retire le ballet de l'ordre de passage

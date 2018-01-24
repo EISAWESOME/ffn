@@ -105,6 +105,15 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
                     return equipes;
                 };
 
+                $scope.getEquipeIndex = function(){
+
+                     var matchedIndex =  $rootScope.$storage.allEquipes.findIndex(function(eq){
+                         return eq.id == $scope.selectedEquipe.id;
+                     });
+
+                     return matchedIndex;
+                };
+
 
                 /**
                  * Recupere le nombre d'attribut

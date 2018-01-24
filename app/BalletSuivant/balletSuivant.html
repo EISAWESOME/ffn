@@ -1,102 +1,103 @@
 <section ng-init="init()">
-  <toast></toast>
+    <toast></toast>
 
-  <!-- choix de la competition -->
-  <div ng-repeat="competition in $storage.competitions track by $index">
+    <!-- choix de la competition -->
+    <div ng-repeat="competition in $storage.competitions track by $index">
 
-    <!-- Affiche chaque competition
+        <!-- Affiche chaque competition
 
-    <div id="infoCompet" class="row">
-      {{competition.date}} : {{competition.ville}}
+        <div id="infoCompet" class="row">
+          {{competition.date}} : {{competition.ville}}
+        </div>
+
+        -->
+
+
+        <div id="selectionEtape" class="row">
+
+
+            <div class="btn-group etape nextBallet">
+
+                <!-- Ca marche tkt-->
+                <label ng-repeat="etape in competition.Etapes"
+                       class="btn btn-primary"
+                       style=" width: {{100 / getLength(competition.Etapes) }}%"
+                       ng-model="$parent.$parent.selectedEtape"
+                       ng-click="selectEtape(etape)"
+                       ng-cloak
+                       uib-btn-radio="etape">{{etape.intitule}}</label>
+
+            </div>
+
+        </div>
+
+        <div id="selectionEpreuve" class="row">
+
+            <div class="btn-group epreuve nextBallet"
+                 ng-repeat="etape in competition.Etapes"
+                 ng-if="selectedEtape.id == etape.id"
+                 ng-cloak>
+
+                <label ng-repeat="epreuve in etape.Epreuves"
+                       class="btn btn-primary"
+                       style=" width: {{100 / getLength(etape.Epreuves) }}%"
+                       ng-model="$parent.$parent.$parent.selectedEpreuve"
+                       ng-click="selectEpreuve(epreuve)"
+                       ng-cloak
+                       uib-btn-radio="epreuve">{{epreuve.intitule}}</label>
+
+            </div>
+        </div>
+
+        <div id="selectionEquipe" class="row">
+
+            <div class="btn-group equipe  nextBallet" ng-if="selectedEpreuve">
+
+                <label ng-repeat="equipe in epreuveEquipes"
+                       class="btn btn-primary"
+                       style=" width: {{100 / getLength(epreuveEquipes) }}%"
+                       ng-model="$parent.$parent.selectedEquipe"
+                       ng-click="selectEquipe(selectedEpreuve.id, equipe)"
+                       ng-cloak
+                       uib-btn-radio="equipe">{{equipe.nom_club}}</label>
+
+            </div>
+        </div>
+
+
+        <div id="selectionTypeBallet" class="row">
+
+            <div class="btn-group typeBallet nextBallet" ng-if="$parent.selectedEquipe">
+
+                <button class="btn btn-primary"
+                        ng-model="selectedTypeBallet"
+                        style=" width: 50%"
+                        ng-disabled="$root.$storage.allEquipes[getEquipeIndex()].ballets.Libre"
+                        ng-click="selectTypeBallet('Libre')"
+                        uib-btn-radio="'Libre'">Libre
+                </button>
+
+                <button class="btn btn-primary"
+                        ng-model="selectedTypeBallet"
+                        style=" width: 50%"
+                        ng-disabled="$root.$storage.allEquipes[getEquipeIndex()].ballets.Impose"
+                        ng-click="selectTypeBallet('Impose')"
+                        uib-btn-radio="'Impose'">Imposé
+                </button>
+
+            </div>
+
+
+        </div>
+
+        <div class="center" style="margin-top: 15px">
+            <button ng-if="selectedTypeBallet"
+                    ng-click="submitNext()"
+                    style="width: 30%"
+                    class="btn btn-success"> Valider
+            </button>
+        </div>
+
+
     </div>
-
-    -->
-
-
-    <div id="selectionEtape" class="row">
-
-
-      <div class="btn-group etape nextBallet">
-
-        <!-- Ca marche tkt-->
-        <label ng-repeat="etape in competition.Etapes"
-               class="btn btn-primary"
-               style=" width: {{100 / getLength(competition.Etapes) }}%"
-               ng-model="$parent.$parent.selectedEtape"
-               ng-click="selectEtape(etape)"
-               ng-cloak
-               uib-btn-radio="etape">{{etape.intitule}}</label>
-
-      </div>
-
-    </div>
-
-    <div id="selectionEpreuve" class="row">
-
-      <div class="btn-group epreuve nextBallet"
-           ng-repeat="etape in competition.Etapes"
-           ng-if="selectedEtape.id == etape.id"
-           ng-cloak>
-
-        <label ng-repeat="epreuve in etape.Epreuves"
-               class="btn btn-primary"
-               style=" width: {{100 / getLength(etape.Epreuves) }}%"
-               ng-model="$parent.$parent.$parent.selectedEpreuve"
-               ng-click="selectEpreuve(epreuve)"
-               ng-cloak
-               uib-btn-radio="epreuve">{{epreuve.intitule}}</label>
-
-      </div>
-    </div>
-
-    <div id="selectionEquipe" class="row">
-
-      <div class="btn-group equipe  nextBallet" ng-if="selectedEpreuve">
-
-        <label ng-repeat="equipe in epreuveEquipes"
-               class="btn btn-primary"
-               style=" width: {{100 / getLength(epreuveEquipes) }}%"
-               ng-model="$parent.$parent.selectedEquipe"
-               ng-click="selectEquipe(selectedEpreuve.id, equipe)"
-               ng-cloak
-               uib-btn-radio="equipe">{{equipe.nom_club}}</label>
-
-      </div>
-    </div>
-
-
-    <div id="selectionTypeBallet" class="row">
-
-      <div class="btn-group typeBallet nextBallet" ng-if="$parent.selectedEquipe">
-
-        <button class="btn btn-primary"
-               ng-model="selectedTypeBallet"
-               style=" width: 50%"
-               ng-click="selectTypeBallet('Libre')"
-               ng-disabled="$parent.selectedEquipe.ballets.Libre.isValidated"
-               uib-btn-radio="'Libre'">Libre</button>
-
-        <button class="btn btn-primary"
-               ng-model="selectedTypeBallet"
-               style=" width: 50%"
-               ng-disabled="$parent.selectedEquipe.ballets.Impose.isValidated"
-               ng-click="selectTypeBallet('Impose')"
-               uib-btn-radio="'Impose'">Imposé</button>
-
-      </div>
-
-
-    </div>
-
-    <div class="center" style="margin-top: 15px">
-      <button ng-if="selectedTypeBallet"
-                 ng-click="submitNext()"
-                 style="width: 30%"
-                 class="btn btn-success"> Valider
-      </button>
-    </div>
-
-
-
-  </div>
 </section>

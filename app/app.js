@@ -130,245 +130,248 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
 // 4 = coach
 // 5 = guest
 
-$rootScope.allPages = [
-    {
-        "nom": "Login",
-        "icon": "img/login.svg",
-        "url": "#!/Login",
-        "roles": [0, 11, 12, 13, 2, 3, 4, 5]
-    },
-
-    {
-        "nom": "Inscription Nageurs",
-        "icon": "img/swimmers.svg",
-        "url": "#!/",
-        "roles": [0, 4]
-    },
-
-    {
-        "nom": "Notation d'un ballet",
-        "icon": "img/grade.svg",
-        "url": "#!/NotationBallet",
-        "roles": [0, 11, 12, 13, 2]
-    },
-
-    {
-        "nom": "Validation d'un ballet",
-        "icon": "img/valid.svg",
-        "url": "#!/ValidBallet",
-        "roles": [0, 3]
-    },
-
-    {
-        "nom": "Ballet suivant",
-        "icon": "img/next.svg",
-        "url": "#!/BalletSuivant",
-        "roles": [0, 3]
-    },
-
-    {
-        "nom": "Tableau General",
-        "icon": "img/score.svg",
-        "url": "#!/Scores",
-        "roles": [0, 11, 12, 13, 2, 3, 4, 5]
-    }];
-
-if ($rootScope.$storage.ndc) {
-    $rootScope.allPages[0] =
+    $rootScope.allPages = [
         {
-            "nom": "Deconnexion",
-            "icon": "img/logout.svg",
-            "url": "LOGOUT",
+            "nom": "Login",
+            "icon": "img/login.svg",
+            "url": "#!/Login",
             "roles": [0, 11, 12, 13, 2, 3, 4, 5]
-        };
-}
+        },
 
+        {
+            "nom": "Inscription Nageurs",
+            "icon": "img/swimmers.svg",
+            "url": "#!/",
+            "roles": [0, 4]
+        },
 
-$rootScope.$storage.allEquipes = [
-    {
-        id: 901,
-        nbNageur: 1,
-        nom_club: "Dauphins (solo)"
-    },
+        {
+            "nom": "Notation d'un ballet",
+            "icon": "img/grade.svg",
+            "url": "#!/NotationBallet",
+            "roles": [0, 11, 12, 13, 2]
+        },
 
-    {
-        id: 902,
-        nbNageur: 2,
-        nom_club: "Dauphins (duo)"
-    },
+        {
+            "nom": "Validation d'un ballet",
+            "icon": "img/valid.svg",
+            "url": "#!/ValidBallet",
+            "roles": [0, 3]
+        },
 
-    {
-        id: 903,
-        nbNageur: 3,
-        nom_club: "Dauphins (equipe)"
-    },
+        {
+            "nom": "Ballet suivant",
+            "icon": "img/next.svg",
+            "url": "#!/BalletSuivant",
+            "roles": [0, 3]
+        },
 
-    {
-        id: 801,
-        nbNageur: 1,
-        nom_club: "Saumons (solo)"
-    },
+        {
+            "nom": "Tableau General",
+            "icon": "img/score.svg",
+            "url": "#!/Scores",
+            "roles": [0, 11, 12, 13, 2, 3, 4, 5]
+        }];
 
-    {
-        id: 802,
-        nbNageur: 2,
-        nom_club: "Saumons (duo)"
-    },
-
-    {
-        id: 803,
-        nbNageur: 3,
-        nom_club: "Saumons (equipe)"
+    if ($rootScope.$storage.ndc) {
+        $rootScope.allPages[0] =
+            {
+                "nom": "Deconnexion",
+                "icon": "img/logout.svg",
+                "url": "LOGOUT",
+                "roles": [0, 11, 12, 13, 2, 3, 4, 5]
+            };
     }
-];
+
+    if (!$rootScope.$storage.allEquipes) {
+
+
+        $rootScope.$storage.allEquipes = [
+            {
+                id: 901,
+                nbNageur: 1,
+                nom_club: "Dauphins (solo)"
+            },
+
+            {
+                id: 902,
+                nbNageur: 2,
+                nom_club: "Dauphins (duo)"
+            },
+
+            {
+                id: 903,
+                nbNageur: 3,
+                nom_club: "Dauphins (equipe)"
+            },
+
+            {
+                id: 801,
+                nbNageur: 1,
+                nom_club: "Saumons (solo)"
+            },
+
+            {
+                id: 802,
+                nbNageur: 2,
+                nom_club: "Saumons (duo)"
+            },
+
+            {
+                id: 803,
+                nbNageur: 3,
+                nom_club: "Saumons (equipe)"
+            }
+        ];
+    }
 
 
 // Stock une competition (pour l'instant)
 // Il faudra creer un écran intermediaire qui affiche les competition disponible à la notation
 // puis recuperer cette info via une API
-$rootScope.$storage.competitions =
-    {
-        0:
-            {
-                "id": 1,
-                "date": "25/10/17",
-                "ville": "Lyon",
-                "Etapes":
-                    {
-                        0:
-                            {
-                                "id": 10,
-                                "intitule": "Preliminaire",
-                                "nbConserve": "5",
-                                "Epreuves":
-                                    {
-                                        0:
-                                            {
-                                                "id": 11,
-                                                "intitule": "solo",
-                                                "nbNageur": 1
+    $rootScope.$storage.competitions =
+        {
+            0:
+                {
+                    "id": 1,
+                    "date": "25/10/17",
+                    "ville": "Lyon",
+                    "Etapes":
+                        {
+                            0:
+                                {
+                                    "id": 10,
+                                    "intitule": "Preliminaire",
+                                    "nbConserve": "5",
+                                    "Epreuves":
+                                        {
+                                            0:
+                                                {
+                                                    "id": 11,
+                                                    "intitule": "solo",
+                                                    "nbNageur": 1
 
-                                            },
+                                                },
 
-                                        1:
-                                            {
-                                                "id": 12,
-                                                "intitule": "duo",
-                                                "nbNageur": 2
+                                            1:
+                                                {
+                                                    "id": 12,
+                                                    "intitule": "duo",
+                                                    "nbNageur": 2
 
-                                            },
+                                                },
 
-                                        2:
-                                            {
-                                                "id": 13,
-                                                "intitule": "equipe",
-                                                "nbNageur": 3
+                                            2:
+                                                {
+                                                    "id": 13,
+                                                    "intitule": "equipe",
+                                                    "nbNageur": 3
 
-                                            }
-                                    }
+                                                }
+                                        }
 
-                            },
+                                },
 
-                        1:
-                            {
-                                "id": 20,
-                                "intitule": "Eliminatoire",
-                                "nbConserve": "2",
-                                "Epreuves":
-                                    {
-                                        0:
-                                            {
-                                                "id": 21,
-                                                "intitule": "solo",
-                                                "nbNageur": 1
+                            1:
+                                {
+                                    "id": 20,
+                                    "intitule": "Eliminatoire",
+                                    "nbConserve": "2",
+                                    "Epreuves":
+                                        {
+                                            0:
+                                                {
+                                                    "id": 21,
+                                                    "intitule": "solo",
+                                                    "nbNageur": 1
 
-                                            },
+                                                },
 
-                                        1:
-                                            {
-                                                "id": 22,
-                                                "intitule": "duo",
-                                                "nbNageur": 2
+                                            1:
+                                                {
+                                                    "id": 22,
+                                                    "intitule": "duo",
+                                                    "nbNageur": 2
 
-                                            },
+                                                },
 
-                                        2:
-                                            {
-                                                "id": 23,
-                                                "intitule": "equipe",
-                                                "nbNageur": 3
+                                            2:
+                                                {
+                                                    "id": 23,
+                                                    "intitule": "equipe",
+                                                    "nbNageur": 3
 
-                                            }
-                                    }
+                                                }
+                                        }
 
-                            },
+                                },
 
-                        2:
-                            {
-                                "id": 30,
-                                "intitule": "Finale",
-                                "nbConserve": "1",
-                                "Epreuves":
-                                    {
-                                        0:
-                                            {
-                                                "id": 31,
-                                                "intitule": "solo",
-                                                "nbNageur": 1
+                            2:
+                                {
+                                    "id": 30,
+                                    "intitule": "Finale",
+                                    "nbConserve": "1",
+                                    "Epreuves":
+                                        {
+                                            0:
+                                                {
+                                                    "id": 31,
+                                                    "intitule": "solo",
+                                                    "nbNageur": 1
 
-                                            },
+                                                },
 
-                                        1:
-                                            {
-                                                "id": 32,
-                                                "intitule": "duo",
-                                                "nbNageur": 2
+                                            1:
+                                                {
+                                                    "id": 32,
+                                                    "intitule": "duo",
+                                                    "nbNageur": 2
 
-                                            },
+                                                },
 
-                                        2:
-                                            {
-                                                "id": 33,
-                                                "intitule": "equipe",
-                                                "nbNageur": 3
+                                            2:
+                                                {
+                                                    "id": 33,
+                                                    "intitule": "equipe",
+                                                    "nbNageur": 3
 
-                                            }
-                                    }
+                                                }
+                                        }
 
-                            }
+                                }
+                        }
+
+
+                }
+
+        };
+
+    $rootScope.$storage.tableauAffichage = $rootScope.$storage.tableauAffichage ? $rootScope.$storage.tableauAffichage :
+        {
+            Etapes: {
+                Preliminaire: {
+                    Epreuves: {
+                        solo: [],
+                        duo: [],
+                        equipe: []
                     }
-
-
+                },
+                Eliminatoire: {
+                    Epreuves: {
+                        solo: [],
+                        duo: [],
+                        equipe: []
+                    }
+                },
+                Finale: {
+                    Epreuves: {
+                        solo: [],
+                        duo: [],
+                        equipe: []
+                    }
+                },
             }
-
-    };
-
-$rootScope.$storage.tableauAffichage = $rootScope.$storage.tableauAffichage ? $rootScope.$storage.tableauAffichage :
-    {
-        Etapes: {
-            Preliminaire: {
-                Epreuves: {
-                    solo: [],
-                    duo: [],
-                    equipe: []
-                }
-            },
-            Eliminatoire: {
-                Epreuves: {
-                    solo: [],
-                    duo: [],
-                    equipe: []
-                }
-            },
-            Finale: {
-                Epreuves: {
-                    solo: [],
-                    duo: [],
-                    equipe: []
-                }
-            },
-        }
-    };
+        };
 
 
 })
