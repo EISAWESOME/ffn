@@ -57,7 +57,7 @@ form {
   display: flex;
   margin-bottom: 50px;
   flex-direction: row;
-  min-height: 85%;
+  min-height: 100%;
   width: 100%;
   background-color: #dee1da;
 }
@@ -93,28 +93,6 @@ form {
 
 .error {
   color: red;
-}
-
-.pageEntry {
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  width: 100px;
-  height: 100px;
-  margin: 3px;
-  padding: 3px;
-  border: solid black 1px;
-}
-
-.pageEntry img {
-
-  position: absolute;
-  left: 29px;
-  bottom: 5px;
-  display: block;
-
 }
 
 .buttonDemo {
