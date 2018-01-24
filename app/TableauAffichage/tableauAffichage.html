@@ -1,14 +1,16 @@
 <section ng-init="init()">
 
     <div ng-repeat="(etape, epreuves) in affichage.Etapes">
-        <h3 data-toggle="collapse" data-target="#{{etape}}EpreuveContainer">{{etape}} </h3><span
-            class="glyphicon glyphicon-triangle-bottom"></span>
+        <h3 data-toggle="collapse" data-target="#{{etape}}EpreuveContainer">{{etape}} <img src="https://image.flaticon.com/icons/svg/60/60781.svg" height="15" width="15"> </h3>
+
 
         <div id="{{etape}}EpreuveContainer" class="collapse">
-            <div ng-repeat="(epreuve, ballets) in epreuves.Epreuves" style="margin-left:15px">
+            <div ng-repeat="(epreuve, ballets) in epreuves.Epreuves" style="margin-left:15px" >
 
 
-                <h4 data-toggle="collapse" data-target="#{{epreuve}}BalletContainer">{{epreuve}}</h4>
+
+                <h4 data-toggle="collapse"
+                    data-target="#{{epreuve}}BalletContainer" ng-if="isEpreuveEmpty(ballets)">{{epreuve}}</h4>
                 <div id="{{epreuve}}BalletContainer" class="collapse">
                     <div ng-repeat="ballet in ballets" style="margin-left:15px">
                         <h5> {{ballet.infos.equipe}}</h5>

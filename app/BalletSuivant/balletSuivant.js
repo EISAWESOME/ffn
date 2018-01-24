@@ -169,6 +169,4 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
                         }
                     });
                 };
-
-
             }]);

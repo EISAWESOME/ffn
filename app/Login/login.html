@@ -1,5 +1,7 @@
 <section ng-init="init()">
-  <p>Page de login</p>
+  <h2>Page de login</h2>
+
+  <!--
   <form name="formLogin" style="width:40%">
     <label for="ndc"> Login :</label>
     <input id="ndc"
@@ -15,6 +17,29 @@
 
     <input type="submit" class="btn btn-success" value="Go!"
             ng-click="submit()"/>
+  </form>
+  -->
+
+
+  <form name="formLogin">
+
+    <div layout="row">
+      <md-input-container class="md-block">
+        <label>Login </label>
+        <input name="ndcInput" ng-model="model.ndc" required>
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container class="md-block">
+        <label>Mot de passe </label>
+        <input name="mdpInput" type="password" ng-model="model.mdp" required>
+      </md-input-container>
+
+      <md-input-container>
+        <md-button class="md-raised md-primary" ng-click="submit()">Go!</md-button>
+      </md-input-container>
+    </div>
   </form>
 
 

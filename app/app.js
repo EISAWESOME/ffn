@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('myApp', [
     'ngRoute',
+    'ngMaterial',
     'ngStorage',
     'ngToast',
     'ui.bootstrap',
@@ -21,13 +22,17 @@ var app = angular.module('myApp', [
     $routeProvider.otherwise({redirectTo: '/Login'});
 }]);
 
-app.run(function ($localStorage, $sessionStorage, $rootScope) {
+app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast) {
 
     //$localStorage.$reset();
     $rootScope.$storage = $localStorage;
     console.log($rootScope.$storage);
 
-    $rootScope.$storage.role_id = $rootScope.$storage.role_id ? $rootScope.$storage.role_id : 5;
+    if($rootScope.$storage.role_id || $rootScope.$storage.role_id ==0) {
+
+    } else {
+        $rootScope.$storage.role_id  = 5;
+    }
     /*
     $rootScope.$storage.ndc = "csimonin";
     $rootScope.$storage.pass = "1234";
@@ -40,10 +45,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
         delete $rootScope.$storage.ndc;
         delete $rootScope.$storage.role_name;
         $rootScope.$storage.role_id = 5;
-        setTimeout(function () {
-            location.reload();
-        }, 10);
-
+        location.reload();
     };
 
     //Tableau qui contient l'odre de passage des ballets.
@@ -51,6 +53,22 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     //Quand un ballet est validé par le juge arbitre, on splice l'index 0
 
     //Faire un set timeout qui pull l'ordre de passage toute les 10s
+
+    $rootScope.$on('toast', function(message){
+        ngToast.create(message);
+    });
+
+
+    $rootScope.currentOrdre = 0;
+    $rootScope.previousOrdre = function(){
+        if($rootScope.$storage.ordrePassage[$rootScope.currentOrdre -1])
+            $rootScope.currentOrdre--;
+    };
+    $rootScope.nextOrdre = function(){
+        if($rootScope.$storage.ordrePassage[$rootScope.currentOrdre +1])
+            $rootScope.currentOrdre++;
+    };
+
 
 
     $rootScope.$storage.ordrePassage = $rootScope.$storage.ordrePassage ? $rootScope.$storage.ordrePassage : [];
@@ -111,42 +129,42 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
     $rootScope.allPages = [
         {
             "nom": "Login",
-            "icon": "img/login.png",
+            "icon": "img/login.svg",
             "url": "#!/Login",
             "roles": [0, 11, 12, 13, 2, 3, 4, 5]
         },
 
         {
             "nom": "Inscription Nageurs",
-            "icon": "img/swimmers.png",
+            "icon": "img/swimmers.svg",
             "url": "#!/",
             "roles": [0, 4]
         },
 
         {
             "nom": "Notation d'un ballet",
-            "icon": "img/grade.png",
+            "icon": "img/grade.svg",
             "url": "#!/NotationBallet",
             "roles": [0, 11, 12, 13, 2]
         },
 
         {
             "nom": "Validation d'un ballet",
-            "icon": "img/valid.png",
+            "icon": "img/valid.svg",
             "url": "#!/ValidBallet",
             "roles": [0, 3]
         },
 
         {
             "nom": "Ballet suivant",
-            "icon": "img/next.png",
+            "icon": "img/next.svg",
             "url": "#!/BalletSuivant",
             "roles": [0, 3]
         },
 
         {
             "nom": "Tableau General",
-            "icon": "img/score.png",
+            "icon": "img/score.svg",
             "url": "#!/Scores",
             "roles": [0, 11, 12, 13, 2, 3, 4, 5]
         }];
@@ -155,8 +173,8 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
         $rootScope.allPages[0] =
             {
                 "nom": "Deconnexion",
-                "icon": "img/logout.png",
-                "url": "#!/",
+                "icon": "img/logout.svg",
+                "url": "LOGOUT",
                 "roles": [0, 11, 12, 13, 2, 3, 4, 5]
             };
     }
@@ -166,37 +184,37 @@ app.run(function ($localStorage, $sessionStorage, $rootScope) {
         {
             id: 901,
             nbNageur: 1,
-            nom_club: "69 la trik solo"
+            nom_club: "Dauphins (solo)"
         },
 
         {
             id: 902,
             nbNageur: 2,
-            nom_club: "69 la trik duo"
+            nom_club: "Dauphins (duo)"
         },
 
         {
             id: 903,
             nbNageur: 3,
-            nom_club: "69 la trik equipe"
+            nom_club: "Dauphins (equipe)"
         },
 
         {
             id: 801,
             nbNageur: 1,
-            nom_club: "Les filous du poitou solo"
+            nom_club: "Saumons (solo)"
         },
 
         {
             id: 802,
             nbNageur: 2,
-            nom_club: "Les filous du poitou duo"
+            nom_club: "Saumons (duo)"
         },
 
         {
             id: 803,
             nbNageur: 3,
-            nom_club: "Les filous du poitou equipe"
+            nom_club: "Saumons (equipe)"
         }
     ];
 

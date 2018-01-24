@@ -110,15 +110,12 @@ angular.module('myApp.login', ['ngRoute', 'ngStorage'])
                     $rootScope.allPages[0] =
                     {
                         "nom": "Deconnexion",
-                        "icon": "img/logout.png",
+                        "icon": "img/logout.svg",
                         "url": "#!/",
                         "roles": [0, 11, 12, 13, 2, 3, 4, 5]
                     };
                     $window.location.href = "http://" + $window.location.host + "/app/#!/";
                 }
             }
-
         }
-
-
       }]);

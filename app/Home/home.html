@@ -10,21 +10,41 @@
     <p ng-if="$storage.role_name">Vous avez le role : {{$storage.role_name}} </p>
   </div>
 
+  <md-grid-list md-cols="2" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+
+    <md-grid-tile md-rowspan="1"
+                  md-colspan="1"
+                  md-colspan-sm="1"
+                  md-colspan-xs="1"
+                  ng-repeat="page in allPages track by $index"
+                  ng-if="page.roles.indexOf($storage.role_id) !=-1"
+                  ng-style="color[$index]"
+                  ng-click="redirect(page.url)">
+
+      <md-icon md-svg-icon="{{page.icon}}" style="width:60%; height : 60%;"></md-icon>
+      <md-grid-tile-footer>
+        <h3>
+          {{page.nom}}
+        </h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+  </md-grid-list>
+
+
+
+
+
+  <!--
+
   <div style="display:flex">
-    <!-- Boucle dans toutes les pages-->
     <a href="{{page.url}}" ng-repeat="page in allPages" ng-if="page.roles.indexOf($storage.role_id) !=-1">
       <div class="pageEntry">
-        <!--
-             Affiche le liens vers la page seulement
-             si le le role du user connecté correspont aux accès
-             Une verif est à faire dans le controlleur des page ciblé
-        -->
-
         {{page.nom}}
         <img src="{{page.icon}}" height="42" width="42">
       </div>
     </a>
   </div>
+  -->
 
 
 </section>

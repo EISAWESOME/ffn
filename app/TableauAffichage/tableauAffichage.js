@@ -29,5 +29,13 @@ angular.module('myApp.tableauAffichage', ['ngRoute', 'ngStorage'])
                     }
                 };
 
+                $scope.isEpreuveEmpty = function(epreuve){
+                    if(epreuve.length >= 1 ){
+                        return true
+                    } else {
+                        return false;
+                    }
+                }
+
 
             }]);

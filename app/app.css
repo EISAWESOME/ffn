@@ -6,6 +6,7 @@
 }
 
 html {
+  font-family: "https://fonts.googleapis.com/css?family=Roboto";
   height: 100%;
 }
 
@@ -18,6 +19,16 @@ section {
   margin-left: 5%;
 }
 
+form {
+  margin-top : 5%;
+}
+
+.navbar{
+  z-index : 999 !important;
+  position : sticky !important;
+  top: 0 !important;
+}
+
 .flexColumnContainer {
   display : flex;
   flex-direction: column;
@@ -27,26 +38,17 @@ section {
   flex-direction: row;
 }
 
-.balletQueue {
-  background-color: white;
-  width: 200px;
+.balletQueueBanner {
+  width: 100%;
   position: fixed;
   bottom: 0;
   right: 0;
-  border: 1px solid black;
 }
 
-
-.right-banner {
-  background-color: #9d223c;
-  height: 100%;
-  width: 15%;
-}
-
-.left-banner {
-  background-color: #01ff70;
-  height: 100%;
-  width: 15%;
+.queueBannerItem {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
 }
 
 .view-container {
@@ -54,11 +56,14 @@ section {
   flex-direction: row;
   height: 100%;
   width: 100%;
+  background-color: #dee1da;
 }
 
 .view-div {
+  margin-top: -5px;
   width: 70%;
-
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nextBallet {
