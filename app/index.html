@@ -110,7 +110,7 @@
             <li class="nav-item" ng-repeat="page in $root.allPages" ng-if="page.roles.indexOf($storage.role_id) !=-1">
                 <b>
                     <a class="nav-link" href="" ng-click="$root.redirect(page.url)">
-                    {{page.nom}}</a>
+                        {{page.nom}}</a>
                 </b>
 
             </li>
@@ -118,13 +118,13 @@
     </div>
     <div class="buttonDemo" layout="row">
 
-            <md-button class="md-mini" aria-label="test" ng-click="$root.toggleTestData()">
-                <md-icon md-svg-src="img/test.svg"></md-icon>
-            </md-button>
+        <md-button class="md-mini" aria-label="test" ng-click="$root.toggleTestData()">
+            <md-icon md-svg-src="img/test.svg"></md-icon>
+        </md-button>
 
-            <md-button class="md-mini" aria-label="reset" ng-click="$root.resetStorage()">
-                <md-icon md-svg-src="img/reset.svg"></md-icon>
-            </md-button>
+        <md-button class="md-mini" aria-label="reset" ng-click="$root.resetStorage()">
+            <md-icon md-svg-src="img/reset.svg"></md-icon>
+        </md-button>
     </div>
 </nav>
 
@@ -135,7 +135,7 @@
 
 <div class="view-container">
     <md-card class="view-div">
-        <md-card-content  ng-view></md-card-content>
+        <md-card-content ng-view></md-card-content>
     </md-card>
 </div>
 
@@ -146,16 +146,21 @@
             <md-button
                     ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre-1]"
                     ng-click="$root.previousOrdre()"
-                    class="md-icon-button md-primary" flex="10"> <md-icon md-svg-icon="img/left.svg"></md-icon> </md-button>
-            <span flex="20" class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].etape.intitule}}</span>
-            <span flex="15" class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].epreuve.intitule}}</span>
-            <span flex="20" class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].equipe.nom_club}}</span>
+                    class="md-icon-button md-primary" flex="10">
+                <md-icon md-svg-icon="img/left.svg"></md-icon>
+            </md-button>
+            <span flex="20"
+                  class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].etape.intitule}}</span>
+            <span flex="15"
+                  class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].epreuve.intitule}}</span>
+            <span flex="20"
+                  class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].equipe.nom_club}}</span>
             <span flex="10" class="queueBannerItem"> {{$root.$storage.ordrePassage[$root.currentOrdre].type}}</span>
             <span flex="10" class="queueBannerItem">
                 <md-button
-                    ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre+1]"
-                    ng-click="$root.nextOrdre()"
-                    class="md-icon-button md-primary"> <md-icon md-svg-icon="img/right.svg"></md-icon></md-button>
+                        ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre+1]"
+                        ng-click="$root.nextOrdre()"
+                        class="md-icon-button md-primary"> <md-icon md-svg-icon="img/right.svg"></md-icon></md-button>
             </span>
 
         </md-content>

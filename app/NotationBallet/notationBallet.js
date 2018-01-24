@@ -15,11 +15,11 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
                 $scope.init = function () {
 
                     //Redirige l'utilisateur si il n'a pas le droit d'etre sur cette page
-                    if (!$rootScope.$storage.role_id == 0 &&
-                        !$rootScope.$storage.role_id == 11 &&
-                        !$rootScope.$storage.role_id == 12 &&
-                        !$rootScope.$storage.role_id == 13 &&
-                        !$rootScope.$storage.role_id == 2) {
+                    if ($rootScope.$storage.role_id != 0 &&
+                        $rootScope.$storage.role_id != 11 &&
+                        $rootScope.$storage.role_id != 12 &&
+                        $rootScope.$storage.role_id != 13 &&
+                        $rootScope.$storage.role_id != 2) {
                         $scope.redirectWrongPath();
                     }
 

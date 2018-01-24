@@ -1,31 +1,31 @@
 <section ng-init="init()">
-  <h2>Authentifiez-vous</h2>
-  <form name="formLogin">
+    <h2>Authentifiez-vous</h2>
+    <form name="formLogin">
 
-    <div layout="row">
-      <md-input-container class="md-block">
-        <label>Login </label>
-        <input name="ndcInput" ng-model="model.ndc" autocomplete="off" required>
-      </md-input-container>
+        <div layout="row">
+            <md-input-container class="md-block">
+                <label>Login </label>
+                <input name="ndcInput" ng-model="model.ndc" autocomplete="off" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <md-input-container class="md-block">
+                <label>Mot de passe </label>
+                <input name="mdpInput" type="password" ng-model="model.mdp" autocomplete="off" required>
+            </md-input-container>
+
+            <md-input-container style="margin-top:10px">
+                <md-button class="md-raised md-primary" type="submit" ng-click="submit()">Go!</md-button>
+            </md-input-container>
+        </div>
+    </form>
+
+
+    <!--  Envoi les credentials a l'API
+          Si l'API reponds != false, on redirige vers home, sinon on affiche un message d'erreur-->
+    <div class="error" ng-if="loginError">
+        {{loginError}}
     </div>
-
-    <div layout="row">
-      <md-input-container class="md-block">
-        <label>Mot de passe </label>
-        <input name="mdpInput" type="password" ng-model="model.mdp" autocomplete="off" required>
-      </md-input-container>
-
-      <md-input-container>
-        <md-button class="md-raised md-primary" type="submit" ng-click="submit()">Go!</md-button>
-      </md-input-container>
-    </div>
-  </form>
-
-
-  <!--  Envoi les credentials a l'API
-        Si l'API reponds != false, on redirige vers home, sinon on affiche un message d'erreur-->
-  <div class="error" ng-if="loginError">
-    {{loginError}}
-  </div>
 
 </section>

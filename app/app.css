@@ -6,12 +6,13 @@
 }
 
 html {
-  font-family: "https://fonts.googleapis.com/css?family=Roboto";
   height: 100%;
+  background-color: #dee1da;
 }
 
 body {
   height: 100%;
+  background-color: #dee1da;
 }
 
 section {
@@ -53,8 +54,9 @@ form {
 
 .view-container {
   display: flex;
+  margin-bottom: 50px;
   flex-direction: row;
-  height: 100%;
+  min-height: 85%;
   width: 100%;
   background-color: #dee1da;
 }

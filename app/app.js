@@ -132,7 +132,7 @@ app.run(function ($localStorage, $sessionStorage, $rootScope, ngToast, $window) 
 
     $rootScope.allPages = [
         {
-            "nom": "Login",
+            "nom": "Connexion",
             "icon": "img/login.svg",
             "url": "#!/Login",
             "roles": [0, 11, 12, 13, 2, 3, 4, 5]
