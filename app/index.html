@@ -8,165 +8,168 @@
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
-    <!--
+  <!--
 
-    __██████████████
-  __█░░░░░░░░████░░░░░░█
-  __█░░░░░░░░░░░█░░░░░░░░░█
-  __█░░░░░░░███░░░█░░░░░░░░░█
-  __█░░░░███░░░███░█░░░████░█
-  __█░░░██░░░░░░░░███░██░░░░██
-  __█░░░░░░░░░░░░░░░░░█░░░░░░░░███
-  __█░░░░░░░░░░░░░██████░░░░░████░░█
-  __█░░░░░░░░░█████░░░████░░██░░██░░█
-  ██░░░░░░░███░░░░░░░░░░█░░░░░░░░███
-  █░░░░░░░░░░░░░░█████████░░█████████
-  █░░░░░░░░░░███████████████████
-  █░░░░░░░░░░█__█████_      █████
-  █░░░░░░░░░░░░█████████__████████
-  ░░░░░░░░░░░░░█████████░░░████████░░░█
-  ░░░░░░░░░░░░░░░░█░░░░░█░░░░░░░░░░░░█
-  ░░░░░░░░░░░░░░░░░░░░██░░░░█░░░░░░██
-  ░░░░░░░░░░░░░░░░░░██░░░░░░░███████
-  ░░░░░░░░░░░░░░░░██░░░░░░░░░░█░░░░░█
-  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
-  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
-  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
-  ░░░░░░░░░░░█████████░░░░░░░░░░░░░░██
-  ░░░░░░░░░░█▒▒▒▒▒▒▒▒███████████████▒▒█
-  ░░░░░░░░░█▒▒███████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█
-  ░░░░░░░░░█▒▒▒▒▒▒▒▒▒█████████████████
-  ░░░░░░░░░░████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█
-  ░░░░░░░░░░░░░░░░░░██████████████████
-  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
-  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░██
-  ▓██░░░░░░░░░░░░░░░░░░░░░░░░██
-  ▓▓▓███░░░░░░░░░░░░░░░░░░░░█
-  ▓▓▓▓▓▓███░░░░░░░░░░░░░░░██
-  ▓▓▓▓▓▓▓▓▓███████████████▓▓█
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+  __██████████████
+__█░░░░░░░░████░░░░░░█
+__█░░░░░░░░░░░█░░░░░░░░░█
+__█░░░░░░░███░░░█░░░░░░░░░█
+__█░░░░███░░░███░█░░░████░█
+__█░░░██░░░░░░░░███░██░░░░██
+__█░░░░░░░░░░░░░░░░░█░░░░░░░░███
+__█░░░░░░░░░░░░░██████░░░░░████░░█
+__█░░░░░░░░░█████░░░████░░██░░██░░█
+██░░░░░░░███░░░░░░░░░░█░░░░░░░░███
+█░░░░░░░░░░░░░░█████████░░█████████
+█░░░░░░░░░░███████████████████
+█░░░░░░░░░░█__█████_      █████
+█░░░░░░░░░░░░█████████__████████
+░░░░░░░░░░░░░█████████░░░████████░░░█
+░░░░░░░░░░░░░░░░█░░░░░█░░░░░░░░░░░░█
+░░░░░░░░░░░░░░░░░░░░██░░░░█░░░░░░██
+░░░░░░░░░░░░░░░░░░██░░░░░░░███████
+░░░░░░░░░░░░░░░░██░░░░░░░░░░█░░░░░█
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+░░░░░░░░░░░█████████░░░░░░░░░░░░░░██
+░░░░░░░░░░█▒▒▒▒▒▒▒▒███████████████▒▒█
+░░░░░░░░░█▒▒███████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█
+░░░░░░░░░█▒▒▒▒▒▒▒▒▒█████████████████
+░░░░░░░░░░████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█
+░░░░░░░░░░░░░░░░░░██████████████████
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+██░░░░░░░░░░░░░░░░░░░░░░░░░░░██
+▓██░░░░░░░░░░░░░░░░░░░░░░░░██
+▓▓▓███░░░░░░░░░░░░░░░░░░░░█
+▓▓▓▓▓▓███░░░░░░░░░░░░░░░██
+▓▓▓▓▓▓▓▓▓███████████████▓▓█
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
 
-    -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Demo fnn</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href=" bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="app.css">
+  -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Demo fnn</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href=" bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
 
-    <!-- jquery -->
-    <script src=" bower_components/jquery/dist/jquery.js"></script>
+  <!-- jquery -->
+  <script src=" bower_components/jquery/dist/jquery.js"></script>
 
-    <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
 
-    <script src=" bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src=" bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
-    <!-- tether -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/js/tether.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/css/tether.min.css">
+  <!-- tether -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/js/tether.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.2/css/tether.min.css">
 
-    <!-- bootstrap -->
-    <script src=" bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href=" bower_components/bootstrap/dist/css/bootstrap.css">
+  <!-- bootstrap -->
+  <script src=" bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href=" bower_components/bootstrap/dist/css/bootstrap.css">
 
-    <!-- linq -->
-    <script src="components/linq/linq.min.js"></script>
+  <!-- linq -->
+  <script src="components/linq/linq.min.js"></script>
 
-    <!-- uib -->
-    <script src=" bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <!-- uib -->
+  <script src=" bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 
-    <!-- angular confirm -->
-    <script src=" bower_components/angular-confirm/dist/angular-confirm.min.js"></script>
-    <link rel="stylesheet" href=" bower_components/angular-confirm/dist/angular-confirm.min.css">
+  <!-- angular confirm -->
+  <script src=" bower_components/angular-confirm/dist/angular-confirm.min.js"></script>
+  <link rel="stylesheet" href=" bower_components/angular-confirm/dist/angular-confirm.min.css">
 
 
-    <script src=" bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src=" bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src=" bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src=" bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 
-    <!-- ngToast -->
-    <script src=" bower_components/ngToast/dist/ngToast.min.js"></script>
-    <link rel="stylesheet" href=" bower_components/ngToast/dist/ngToast.min.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+  <!-- ngToast -->
+  <script src=" bower_components/ngToast/dist/ngToast.min.js"></script>
+  <link rel="stylesheet" href=" bower_components/ngToast/dist/ngToast.min.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 
 </head>
 <body>
 
 <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #95d4ff;">
-    <a class="navbar-brand" href="#!/">
-        <img src="img/ffn.png" height="55px" width="100px" alt="">
-    </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdown" aria-controls="Menu" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#!/">
+    <img src="img/ffn.png" height="55px" width="100px" alt="">
+  </a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarNavDropdown" aria-controls="Menu" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav" ng-cloak>
-            <li class="nav-item" ng-repeat="page in $root.allPages" ng-if="page.roles.indexOf($storage.role_id) !=-1">
-                <b>
-                    <a class="nav-link" href="" ng-click="$root.redirect(page.url)">
-                        {{page.nom}}</a>
-                </b>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav" ng-cloak>
+      <li class="nav-item" ng-repeat="page in $root.allPages" ng-if="page.roles.indexOf($storage.role_id) !=-1">
+        <b>
+          <a class="nav-link" href="" ng-click="$root.redirect(page.url)">
+            {{page.nom}}</a>
+        </b>
 
-            </li>
-        </ul>
-    </div>
-    <div class="buttonDemo" layout="row" layout-align="center">
+      </li>
+    </ul>
+  </div>
+  <div class="buttonDemo" layout="row" layout-align="center">
 
 
-            <md-button class="md-mini" aria-label="test" ng-click="$root.toggleTestData()">
-                <md-icon md-svg-src="img/test.svg"></md-icon>
-            </md-button>
+    <md-button class="md-mini" aria-label="test" ng-click="$root.toggleTestData()">
+      <md-icon md-svg-src="img/test.svg"></md-icon>
+    </md-button>
 
-            <md-button class="md-mini" aria-label="reset" ng-click="$root.resetStorage()">
-                <md-icon md-svg-src="img/reset.svg"></md-icon>
-            </md-button>
+    <md-button class="md-mini" aria-label="reset" ng-click="$root.resetStorage()">
+      <md-icon md-svg-src="img/reset.svg"></md-icon>
+    </md-button>
 
-    </div>
+  </div>
 </nav>
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+  your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <div class="view-container">
-    <md-card class="view-div">
-        <md-card-content ng-view></md-card-content>
-    </md-card>
+  <md-card class="view-div">
+    <md-card-content ng-view></md-card-content>
+  </md-card>
 </div>
 
 <div class="balletQueueBanner" ng-cloak ng-if="$root.$storage.ordrePassage[$root.currentOrdre]" title="Ballets à venir">
-    <md-card>
-        <md-content layout="row" layout-wrap>
-            <h4 class="queueBannerItem" hide show-gt-md flex="10">A venir</h4>
-            <md-button
-                    ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre-1]"
-                    ng-click="$root.previousOrdre()"
-                    class="md-icon-button md-primary" flex="10">
-                <md-icon md-svg-icon="img/left.svg"></md-icon>
-            </md-button>
-            <span flex="20"
-                  class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].etape.intitule}}</span>
-            <span flex="15"
-                  class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].epreuve.intitule}}</span>
-            <span flex="20"
-                  class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].equipe.nom_club}}</span>
-            <span flex="10" class="queueBannerItem"> {{$root.$storage.ordrePassage[$root.currentOrdre].type}}</span>
-            <span flex="10" class="queueBannerItem">
+  <md-card>
+    <md-content layout="row" layout-wrap>
+      <h4 class="queueBannerItem" hide show-gt-md flex="10">A venir</h4>
+      <md-button
+        ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre-1]"
+        ng-click="$root.previousOrdre()"
+        class="md-icon-button md-primary" flex="10">
+        <md-icon md-svg-icon="img/left.svg"></md-icon>
+      </md-button>
+      <span flex="20"
+            class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].etape.intitule}}</span>
+      <span flex="15"
+            class="queueBannerItem">{{$root.$storage.ordrePassage[$root.currentOrdre].epreuve.intitule}}</span>
+      <span flex="20"
+            class="queueBannerItem"
+            ng-style="{'color' : '#' + $root.intToRGB($root.hashCode($root.$storage.ordrePassage[$root.currentOrdre].equipe.nom_club))}">
+              <b>{{$root.$storage.ordrePassage[$root.currentOrdre].equipe.nom_club}}</b>
+      </span>
+      <span flex="10" class="queueBannerItem"> {{$root.$storage.ordrePassage[$root.currentOrdre].type}}</span>
+      <span flex="10" class="queueBannerItem">
                 <md-button
-                        ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre+1]"
-                        ng-click="$root.nextOrdre()"
-                        class="md-icon-button md-primary"> <md-icon md-svg-icon="img/right.svg"></md-icon></md-button>
+                  ng-disabled="!$root.$storage.ordrePassage[$root.currentOrdre+1]"
+                  ng-click="$root.nextOrdre()"
+                  class="md-icon-button md-primary"> <md-icon md-svg-icon="img/right.svg"></md-icon></md-button>
             </span>
 
-        </md-content>
-    </md-card>
+    </md-content>
+  </md-card>
 </div>
 
 

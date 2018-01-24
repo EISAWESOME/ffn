@@ -8,7 +8,8 @@
           (($storage.role_id == 2 && $storage.ordrePassage[0].type == 'Impose')  ||
            ($storage.role_id == 13 && $storage.ordrePassage[0].type == 'Libre'))
           || $storage.role_id >= 10">
-    <div class="row">
+
+    <div class="row" ng-if="$storage.ordrePassage[0]">
       <!--
       <h4 class="center">Notation de l'equipe "{{$storage.ordrePassage[0].equipe.nom_club}}" pour l'epreuve
         {{$storage.ordrePassage[0].epreuve.intitule}}: </h4>
@@ -16,6 +17,7 @@
       <h4> Notation </h4>
 
     </div>
+
     <div class="row" ng-if="$storage.ordrePassage[0]">
       <h5> Etape :
         {{$storage.ordrePassage[0].etape.intitule}}</h5>
@@ -129,7 +131,10 @@
     ng-if="!$storage.ordrePassage[0].epreuve ||
           !$storage.ordrePassage[0].equipe ||
           !$storage.ordrePassage[0].type">
-    Veuillez attendre que le ballet suivant soit selectionné
+      <div class="errorDiv center">
+        <md-icon md-svg-icon="img/exclamation.svg" style="width:50%; height: 50%"></md-icon>
+        <div><h1>Veuillez attendre que le ballet suivant soit choisi</h1></div>
+      </div>
   </div>
 
 </section>

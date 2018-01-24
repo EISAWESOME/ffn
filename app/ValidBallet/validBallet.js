@@ -15,6 +15,12 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
         $scope.init = function () {
           console.log($rootScope.$storage);
 
+          if ($rootScope.$storage.role_id != 0 &&
+            $rootScope.$storage.role_id != 3) {
+            $rootScope.redirectWrongPath();
+          }
+
+
           $scope.balletEnCours = $rootScope.$storage.ordrePassage[0];
 
           $scope.balletValide = {

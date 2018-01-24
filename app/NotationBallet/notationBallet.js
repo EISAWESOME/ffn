@@ -390,10 +390,4 @@ angular.module('myApp.notationBallet', ['ngRoute', 'ngStorage'])
 
                 };
 
-                $scope.redirectWrongPath = function () {
-                    console.log('404');
-                    $window.location.href = "http://" + $window.location.host + "/app/#!/404";
-                }
-
-
             }]);
