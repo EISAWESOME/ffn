@@ -3,9 +3,9 @@
 
   <div style="display:block" ng-if="$storage.role_id || $storage.role_id == 0 ">
     <p ng-if="$storage.ndc">Bonjour {{$storage.ndc}} !</p>
-    <div ng-if="!$storage.ndc && $storage.role_id">
-      <p>Bonjour Invité !</p>
-      <p>Veuillez vous connecter pour accèder aux autres pages</p>
+    <div ng-if="!$storage.ndc && $storage.role_id" class="center">
+      <h2>Bonjour Invité !</h2>
+      <h4>Veuillez vous connecter pour accèder aux autres pages</h4>
     </div>
     <p ng-if="$storage.role_name">Vous avez le role : {{$storage.role_name}} </p>
   </div>

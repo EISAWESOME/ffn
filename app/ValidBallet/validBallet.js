@@ -202,7 +202,10 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
                     if (!matchEquipe.ballets) {
                       matchEquipe.ballets = {};
                     }
-                    matchEquipe.ballets[$scope.balletEnCours.type] = $scope.balletValide.isValidated;
+                    if(!matchEquipe.ballets[$scope.balletEnCours.etape.intitule]){
+                      matchEquipe.ballets[$scope.balletEnCours.etape.intitule] = {}
+                    }
+                    matchEquipe.ballets[$scope.balletEnCours.etape.intitule][$scope.balletEnCours.type] = $scope.balletValide.isValidated;
 
                     console.log($rootScope.$storage.allEquipes);
                   }

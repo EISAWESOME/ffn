@@ -74,7 +74,7 @@
                 <button class="btn btn-primary"
                         ng-model="selectedTypeBallet"
                         style=" width: 50%"
-                        ng-disabled="$root.$storage.allEquipes[getEquipeIndex()].ballets.Libre"
+                        ng-disabled="$root.$storage.allEquipes[getEquipeIndex()].ballets[$parent.selectedEtape.intitule].Libre"
                         ng-click="selectTypeBallet('Libre')"
                         uib-btn-radio="'Libre'">Libre
                 </button>
@@ -82,7 +82,7 @@
                 <button class="btn btn-primary"
                         ng-model="selectedTypeBallet"
                         style=" width: 50%"
-                        ng-disabled="$root.$storage.allEquipes[getEquipeIndex()].ballets.Impose"
+                        ng-disabled="$root.$storage.allEquipes[getEquipeIndex()].ballets[$parent.selectedEtape.intitule].Impose"
                         ng-click="selectTypeBallet('Impose')"
                         uib-btn-radio="'Impose'">Imposé
                 </button>

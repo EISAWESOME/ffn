@@ -166,9 +166,13 @@ angular.module('myApp.balletSuivant', ['ngRoute', 'ngStorage'])
                   if (!$rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets) {
                     $rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets = {};
                   }
-                  if (!$rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets[$scope.selectedTypeBallet]) {
-                    $rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets[$scope.selectedTypeBallet] = 'prep'
+                  if (!$rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets[$scope.selectedEtape.intitule]) {
+                    $rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets[$scope.selectedEtape.intitule] = {};
                   }
+                  if (!$rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets[$scope.selectedEtape.intitule][$scope.selectedTypeBallet]) {
+                    $rootScope.$storage.allEquipes[$scope.getEquipeIndex()].ballets[$scope.selectedEtape.intitule][$scope.selectedTypeBallet] = 'prep'
+                  }
+
 
                   console.log("Stockage des infos du prochain ballet !");
 
