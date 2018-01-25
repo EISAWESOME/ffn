@@ -7,7 +7,7 @@
           $storage.ordrePassage[0].type &&
           (($storage.role_id == 2 && $storage.ordrePassage[0].type == 'Impose')  ||
            ($storage.role_id == 13 && $storage.ordrePassage[0].type == 'Libre'))
-          || $storage.role_id >= 10">
+          && $storage.role_id >= 10">
 
     <div class="row" ng-if="$storage.ordrePassage[0]">
       <!--

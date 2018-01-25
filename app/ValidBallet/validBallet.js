@@ -29,7 +29,7 @@ angular.module('myApp.validBallet', ['ngRoute', 'ngStorage'])
           };
 
           $scope.changeInput = function(e) {
-            if (e.keyCode === 8 || e.keyCode === 46) {
+            if (e.keyCode === 8 || e.keyCode === 46 || e.keyCode === 32) {
               //keycode for backspace
               console.log('backspace');
               e.preventDefault();
